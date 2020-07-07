@@ -24,6 +24,11 @@ resultExp::resultExp(double val, string msg){
     errorMsg = msg;
 }
 
+storeRes::storeRes(string ei, double ans){
+    equationInput = ei;
+    answer = ans;
+}
+
 ostream& operator<<(ostream &os,const tokenType& tt){
     os << "'" << char(tt) <<"'";
     return os;
@@ -290,15 +295,23 @@ resultExp infix_eval(const string& input){
 //calculator operation
 void sciCalc(){
     cout << "Scientific Calculator" <<endl;
+    cout<< endl;
+    cout << "Commands and function commands" <<endl;
+    cout << "exit - return back to main menu" <<endl;
+    cout << "rad - switch to radian calculation" <<endl;
+    cout << "deg - switch to degree calculation" <<endl;
     bool cont = true;
     bool toRad = false;
     string input;
+    vector <storeRes> solStore;
+    const string fileName = "scicalclog.txt";
     while(cont){
         cout << "Insert your operation: ";
         
         getline(cin,input);
         
         if (input.compare("exit") == 0){
+            cout << "Closing Scientific calculator..."<<endl;
             cont = false;
             break;
         }
@@ -313,19 +326,58 @@ void sciCalc(){
             toRad = false;
             continue;
         }
-        findFunc(input,toRad);
-
-        resultExp result = infix_eval(input);
-        if(result.okay()){
-            if(result.value < 10.0){
-                cout << "val = " << setprecision(3) << result.value << endl;
-            }
-            else cout << "val = " << setprecision(5) << result.value << endl;
+        else if (input.compare("read") == 0){
+            cout << "Reading information..."<<endl;
+            readFile(fileName);
+            continue;
         }
-        else cout << "Error: " << result.errorMsg <<endl;
+        else if (input.compare("restore") == 0){
+            //restore from file
+            continue;
+        }
+        else if (input.compare("remove") == 0){
+            cout << "You have following calculations in history: " << endl;
+            readFile(fileName);
+            deleteLine(solStore);
+            cout << "Update information..." <<endl;
+            writeFile(fileName,solStore);
+            continue;
+        }
+        else if (input.compare("clear") == 0){
+            cout << "Clearing information..."<<endl;
+            solStore.clear();
+            writeFile(fileName,solStore);
+            continue;
+        }
+        else if (input.compare("exitclr") == 0){
+            cout << "Clearing information and closing scientific calcuator..."<<endl;
+            solStore.clear();
+            writeFile(fileName,solStore);
+            cont = false;
+            break;
+        }
+        else{
+            sciCalcHelper(input,toRad,solStore);
+            writeFile(fileName,solStore);
+        } 
     }
+    solStore.clear();
 }
 
+void sciCalcHelper(string & input, bool toRad, vector <storeRes>& solStore){
+    string rawInput = input;
+    findFunc(input,toRad);
+
+    resultExp result = infix_eval(input);
+    if(result.okay()){
+        if(result.value < 10.0){
+            cout << "val = " << setprecision(3) << result.value << endl;
+        }
+        else cout << "val = " << setprecision(5) << result.value << endl;
+        solStore.push_back(storeRes(rawInput,result.value));
+    }
+    else cout << "Error: " << result.errorMsg <<endl;
+}
 
 
 //mathematical functions
@@ -462,4 +514,40 @@ void funcAppl(string &s, string funcType, bool toRad){
         }
         found = s.find(funcType,found+1);
     }
+}
+
+//filestream
+void writeFile(string fileName, vector<storeRes>& solStore){
+    ofstream myFile(fileName);
+    if(myFile.is_open()){
+        for(auto it = 0; it<solStore.size(); ++it){
+            myFile << solStore[it].equationInput << " = "<< solStore[it].answer << endl;
+        }
+        myFile.close();
+    }
+    else cout << "Error: Unable to write " << fileName <<"!"<<endl;
+}
+
+void readFile(string fileName){
+    string line;
+    ifstream myFileR(fileName);
+    if(myFileR.is_open()){
+        while(getline(myFileR,line)){
+            cout << line << endl;
+        }
+        myFileR.close();
+    }
+    else cout << "Error: Unable to read " << fileName <<"!"<<endl;
+}
+
+void deleteLine(vector<storeRes>& solStore){
+    int lineNo;
+    cout << "Which line do you want to remove?: ";
+    cin >> lineNo;
+    if(lineNo < solStore.size()){
+        solStore.erase(solStore.begin()+lineNo-1);
+        cout <<"Deleted line "<<lineNo<<endl;
+        return;
+    }
+    else cout << "Failed to delete line " << lineNo <<endl;
 }
