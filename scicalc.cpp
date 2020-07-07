@@ -303,11 +303,15 @@ void sciCalc(){
             break;
         }
 
-        if (input.compare("rad") == 0){
+        else if (input.compare("rad") == 0){
+            cout << "Performing radian calcuations..." <<endl;
             toRad = true;
+            continue;
         }
         else if (input.compare("deg") == 0){
+            cout << "Performing degree calcuations..." <<endl;
             toRad = false;
+            continue;
         }
         findFunc(input,toRad);
 
@@ -322,25 +326,7 @@ void sciCalc(){
     }
 }
 
-void calcFeature(){
-    string featureToExecute;
-    bool toEnd = false;
-    while (!toEnd){
-        cout << "Type feature to execute: ";
-        getline(cin, featureToExecute);
-        if(featureToExecute == "s" || featureToExecute == "S"){
-            sciCalc();
-        }
-        else if(featureToExecute == "e" || featureToExecute == "E"){
-            toEnd = true;
-            cout << "Terminating calculator..."<<endl;
-        }
-        else{
-            cout << "Error! Wrong input to execute. Try again..." <<endl;
-        }
-        cout << endl;
-    }
-}
+
 
 //mathematical functions
 void findFunc(string &s, bool toRad){

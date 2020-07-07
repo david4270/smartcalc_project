@@ -74,7 +74,7 @@ resultExp infix_eval(const string& input);
 
 //calculator operation
 void sciCalc();
-void calcFeature();
+//void calcFeature();
 
 //mathematical functions
 void findFunc(string &s, bool toRad);
