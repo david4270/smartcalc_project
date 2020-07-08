@@ -308,6 +308,7 @@ void sciCalc(){
     string input;
     vector <storeRes> solStore;
     const string fileName = "scicalclog.txt";
+
     while(cont){
         cout << "Insert your operation: ";
         getline(cin, input);
@@ -336,8 +337,15 @@ void sciCalc(){
             readFile(fileName);
             continue;
         }
+        else if (input.compare("readDB") == 0){
+            cout << "Reading database..."<<endl;
+            readsolStore(solStore);
+            continue;
+        }
         else if (input.compare("restore") == 0){
-            //restore from file
+            cout << "Restoring file..." <<endl;
+            restoreData(fileName,solStore);
+            writeFile(fileName,solStore);
             continue;
         }
         else if (input.compare("remove") == 0){
@@ -346,7 +354,6 @@ void sciCalc(){
             deleteLine(solStore);
             cout << "Update information..." <<endl;
             writeFile(fileName,solStore);
-            //readsolStore(solStore);
             continue;
         }
         else if (input.compare("clear") == 0){
@@ -550,16 +557,44 @@ void deleteLine(vector<storeRes>& solStore){
     int lineNo;
     cout << "Which line do you want to remove?: ";
     cin >> lineNo;
-    if(lineNo < solStore.size()){
+    if(lineNo <= solStore.size()){
         solStore.erase(solStore.begin()+lineNo-1);
         cout <<"Deleted line "<<lineNo<<endl;
     }
     else cout << "Failed to delete line " << lineNo <<endl;
 }
 
-//Test
-void readsolStore(vector<storeRes>& solStore){
-        for(auto it = 0; it<solStore.size(); ++it){
-            cout << solStore[it].equationInput << " = "<< solStore[it].answer << endl;
+void restoreData(string fileName, vector <storeRes> & solStore){
+    string line;
+    string eqn;
+    string answer;
+    ifstream myFileR(fileName);
+    if(!solStore.empty()){
+        cout << "The restore cannot be performed!" <<endl;
+        return;
+    }
+    if(myFileR.is_open()){
+        while(getline(myFileR,line)){
+            cout << line << endl;
+            for(int i = 0; i < line.find("=");++i){
+                eqn += string(1,line[i]);
+            }
+            for(int i = line.find("=")+1; i < line.size();++i){
+                answer += string(1,line[i]);
+            }
+            cout << eqn << " = " << answer <<endl;
+            solStore.push_back(storeRes(eqn,stod(answer)));
+            eqn.clear();
+            answer.clear();
         }
+        myFileR.close();
+    }
+    else cout << "Error: Unable to read " << fileName <<"!"<<endl;
 }
+
+void readsolStore(vector<storeRes>& solStore){
+    for(auto it = 0; it<solStore.size(); ++it){
+        cout << solStore[it].equationInput << " = "<< solStore[it].answer << endl;
+    }
+}
+

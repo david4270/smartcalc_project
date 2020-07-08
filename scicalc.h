@@ -92,7 +92,6 @@ void funcAppl(string &s, string funcType, bool toRad);
 void writeFile(string fileName, vector<storeRes>& solStore);
 void readFile(string fileName);
 void deleteLine(vector<storeRes>& solStore);
-
-//Test
+void restoreData(string fileName, vector <storeRes> & solStore);
 void readsolStore(vector<storeRes>& solStore);
 #endif
