@@ -1,4 +1,5 @@
 #include "scicalc.h"
+#include "eqncalc.h"
 using namespace std;
 
 //Version 0.1 (200708)

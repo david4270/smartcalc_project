@@ -5,8 +5,6 @@
 
 using namespace std;
 
-
-
 //Constructor and operator<< of classes
 
 Token::Token(tokenType tp, double vl){
@@ -298,11 +296,47 @@ resultExp infix_eval(const string& input){
 //calculator operation
 void sciCalc(){
     cout << "Scientific Calculator" <<endl;
-    cout<< endl;
-    cout << "Commands and function commands" <<endl;
+    cout << endl;
+    cout << "Commands" <<endl;
     cout << "exit - return back to main menu" <<endl;
+    cout << "read - read saved file" <<endl;
+    cout << "readDB - read database" <<endl;
+    cout << "restore - restore calculation data from previous operation, should be performed before first calculation" <<endl;
+    cout << "remove - remove certain calculation from history" <<endl;
+    cout << "clear - clear calculation history" <<endl;
+    cout << "exitclr - clear and exit" <<endl;
+    cout << endl;
+    cout << "Conversion of angle units" <<endl;
     cout << "rad - switch to radian calculation" <<endl;
     cout << "deg - switch to degree calculation" <<endl;
+    cout << endl;
+    cout << "Mathematical Functions" <<endl;
+    cout << "sin - sine"<<endl;
+    cout << "cos - cosine"<<endl;
+    cout << "tan - tangent"<<endl;
+    cout << "sec - secant" << endl;
+    cout << "csc - cosecant"<<endl;
+    cout << "cot - cotangent"<<endl;
+    cout << "asin - arcsine"<<endl;
+    cout << "acos - arccosine"<<endl;
+    cout << "atan - arctangent"<<endl;
+    cout << "asec - arcsecant"<<endl;
+    cout << "acsc - arccosecant"<<endl;
+    cout << "acot - arccotangent"<<endl;
+    cout << "sinh - hyperbolic sine"<<endl;
+    cout << "cosh - hyperbolic cosine"<<endl;
+    cout << "tanh - hyperbolic tangent"<<endl;
+    cout << "asinh - arc hyperbolic sine"<<endl;
+    cout << "acosh - arc hyperbolic cosine"<<endl;
+    cout << "atanh - arc hyperbolic tangent"<<endl;
+    cout << "exp - e^()"<<endl;
+    cout << "twop - 2^()"<<endl;
+    cout << "expmo - (-1)^()"<<endl;
+    cout << "ln - natural log"<<endl;
+    cout << "log OR logten - log base 19"<<endl;
+    cout << "logtwo - log base 2"<<endl;
+    cout << "sqrt - square root"<<endl;
+    cout << "cbrt - cubic root"<<endl;
     bool cont = true;
     bool toRad = false;
     string input;
