@@ -4,6 +4,10 @@ More features are planned to be added!
 
 ## Changelog
 Jul 6, 2020 - Initial Release
+Jul 8, 2020 - Scientific calcultor error fixed, still WIP
+
+## Errors
+Report me if you find any!
 
 ## Credits
 Scientific calculator code reference:

@@ -149,11 +149,14 @@ int orderOfOperation(tokenType tt){
 }
 
 void minus_fix(Sequence &seq){
+    if (seq.empty()) {
+        return;
+    }
     if(seq[0].type == tokenType::bmin){
         seq[0].type = tokenType::umin;
     }
     for(int i=1; i<seq.size(); ++i){
-        tokenType prev = seq[i-1].type;
+        tokenType prev = seq[i-1.0].type;
         if(seq[i].type == tokenType::bmin){
             if(prev == tokenType::lpar || isOperator(prev)){
                 seq[i].type = tokenType::umin;
@@ -307,8 +310,10 @@ void sciCalc(){
     const string fileName = "scicalclog.txt";
     while(cont){
         cout << "Insert your operation: ";
-        
-        getline(cin,input);
+        getline(cin, input);
+        if (input.empty()) {
+            getline(cin, input);
+        }
         
         if (input.compare("exit") == 0){
             cout << "Closing Scientific calculator..."<<endl;
@@ -341,6 +346,7 @@ void sciCalc(){
             deleteLine(solStore);
             cout << "Update information..." <<endl;
             writeFile(fileName,solStore);
+            //readsolStore(solStore);
             continue;
         }
         else if (input.compare("clear") == 0){
@@ -397,7 +403,7 @@ void findFunc(string &s, bool toRad){
 }
 
 void funcAppl(string &s, string funcType, bool toRad){
-    double num;
+    double num=0.0;
     size_t found;
     int i;
     bool changeFinished = false;
@@ -547,7 +553,13 @@ void deleteLine(vector<storeRes>& solStore){
     if(lineNo < solStore.size()){
         solStore.erase(solStore.begin()+lineNo-1);
         cout <<"Deleted line "<<lineNo<<endl;
-        return;
     }
     else cout << "Failed to delete line " << lineNo <<endl;
+}
+
+//Test
+void readsolStore(vector<storeRes>& solStore){
+        for(auto it = 0; it<solStore.size(); ++it){
+            cout << solStore[it].equationInput << " = "<< solStore[it].answer << endl;
+        }
 }

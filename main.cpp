@@ -1,6 +1,8 @@
 #include "scicalc.h"
 using namespace std;
 
+//Version 0.1 (200708)
+
 //To compile the program:
 //g++ main.cpp scicalc.cpp -o scicalc.exe
 

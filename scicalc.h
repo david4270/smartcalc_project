@@ -93,4 +93,6 @@ void writeFile(string fileName, vector<storeRes>& solStore);
 void readFile(string fileName);
 void deleteLine(vector<storeRes>& solStore);
 
+//Test
+void readsolStore(vector<storeRes>& solStore);
 #endif
