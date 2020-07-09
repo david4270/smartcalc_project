@@ -2,6 +2,7 @@
 #include "conversion.h"
 using namespace std;
 
+//mass conversion parameters
 const double tonStdtoKg = 1000; //1ton = 1000kg
 const double kgtoGram = 1000; //1kg = 1000g
 const double gramtomg = 1000; //1g = 1000mg
@@ -9,6 +10,29 @@ const double tonUStoLb = 2000; //1 US ton = 2000lb
 const double lbtoOz = 16; // 1lb = 16oz
 const double tonUKtoLb = 2240; //1 UK ton = 2240lb
 const double lbtoGram = 453.59237; // 1lb = 453.59237g
+
+//length conversion parameters
+const double kmtom = 1000; //1km =1000m
+const double mtocm = 100; //1m = 100cm
+const double cmtomm = 10; //1cm = 10mm
+const double fttoin = 12; //1ft = 12in
+const double ydtoft = 3; // 1yd = 3ft
+const double miletoyd = 1760; // 1 mile = 1760 yd
+const double nauticaltometer = 1852; //1 nm = 1852m
+const double intomil = 1000; // 1 in = 1000 mils;
+const double intocm = 2.54; //1in = 2.54cm
+
+//currency conversion parameters
+
+//area conversion parameters
+
+//temperature conversion paramenters
+
+//data conversion parameters
+
+//speed conversion paramenters
+
+//time conversion parameters
 
 //Conversion calculator
 void conversionCalc(){
@@ -45,7 +69,6 @@ void conversionCalc(){
         }
         cout << endl;
     }
-    
 }
 
 // mass conversion
@@ -359,31 +382,108 @@ double massConversion(int unitbefore, int unitafter, double toconvert){
 }
 
 //Length conversion
-
 void lengthCalc(){
+    cout << "Length conversion calculator" <<endl;
+    
+    int beforeChange, afterChange;
+    double toConvert, afterConvert;
+    string unitBeforeChange, unitAfterChange;
+    string statement;
+    bool toEnd = false;
+    while (!toEnd){
+        cout << "Type corresponding number to make your choice" <<endl;
+        cout << "1. millimeters (mm)" << endl;
+        cout << "2. centimeters (cm)" << endl;
+        cout << "3. meters (m)" << endl;
+        cout << "4. kilometers (km)" << endl;
+        cout << "5. inches (in)" << endl;
+        cout << "6. feet (ft)" << endl;
+        cout << "7. yards (yd)" <<endl;
+        cout << "8. miles (mi)" <<endl;
+        cout << "9. nautical miles (nm)" <<endl;
+        cout << "10. mils (mil)" <<endl;
+        cout << "0. exit" <<endl;
+
+        cout << "Which unit do you want to convert from?" << endl;
+        cin >> beforeChange;
+        unitBeforeChange = numtoLengthunit(beforeChange, toEnd);
+        if(toEnd) break;
+        
+        cout << "What is the value to convert in " << unitBeforeChange << endl;
+        cin >> toConvert;
+
+        cout << "Which unit do you want to convert to?" << endl;
+        cin >> afterChange;
+        unitAfterChange = numtoLengthunit(afterChange, toEnd);
+        if(toEnd) break;
+
+        afterConvert = lengthConversion(beforeChange,afterChange,toConvert);
+        if (afterConvert<0){
+            toEnd = true; 
+            break;
+        }   
+        //Enable this if there is a plan to save history with filestream
+        //statement = to_string(toConvert) + " " + unitBeforeChange +" is converted into " + to_string(afterConvert) + " " + unitAfterChange;
+        cout << setprecision(2) << toConvert << " " << unitBeforeChange << " is converted into " << setprecision(2) << afterConvert << " " << unitAfterChange <<endl;
+    }
+    cout << "Returning back to selection menu..." <<endl;
+}
+
+string numtoLengthunit(int input, bool & toEnd){
+    string output;
+    switch (input){
+        case 0:
+            output = "";
+            toEnd = true;
+            break;
+        case 1: output = "millimeters (mm)"; break;
+        case 2: output = "centimeters (cm)"; break;
+        case 3: output = "meters (m)"; break;
+        case 4: output = "kilometers (km)"; break;
+        case 5: output = "inches (in)"; break;
+        case 6: output = "feet (ft)"; break;
+        case 7: output = "yards (yd)"; break;
+        case 8: output = "miles (mi)"; break;
+        case 9: output = "nautical miles (nm)"; break;
+        case 10: output = "mils (mil)"; break;
+        default:
+            cout << "Invalid input!" <<endl;
+            output = "";
+            break;
+    }
+    return output;
+}
+
+double lengthConversion(int unitbefore, int unitafter, double toconvert){
 
 }
 
+//currency conversion
 void currencyCalc(){
 
 }
 
+//area conversion
 void areaCalc(){
 
 }
 
+//temperature conversion
 void temperatureCalc(){
 
 }
 
+//data conversion
 void dataCalc(){
 
 }
 
+//speed conversion
 void speedCalc(){
 
 }
 
+//time conversion
 void timeCalc(){
 
 }

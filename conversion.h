@@ -19,6 +19,8 @@ double massConversion(int unitbefore, int unitafter, double toconvert);
 
 //Length - metre, feet, mile, etc.
 void lengthCalc();
+string numtoLengthunit(int input, bool & toEnd);
+double lengthConversion(int unitbefore, int unitafter, double toconvert);
 
 //Currency - USD, CAD, KRW, etc. Should reflect updated price
 void currencyCalc();
