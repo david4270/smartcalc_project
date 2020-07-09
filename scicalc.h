@@ -1,6 +1,8 @@
 #ifndef scicalc_h
 #define scicalc_h
 
+//Scientific calculator
+
 #include <iostream>
 #include <cmath>
 #include <vector>

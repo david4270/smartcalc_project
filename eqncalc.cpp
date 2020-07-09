@@ -2,3 +2,6 @@
 #include "eqncalc.h"
 using namespace std;
 
+void graphCalc(){
+    
+}
