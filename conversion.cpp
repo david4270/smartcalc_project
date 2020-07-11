@@ -455,7 +455,377 @@ string numtoLengthunit(int input, bool & toEnd){
 }
 
 double lengthConversion(int unitbefore, int unitafter, double toconvert){
-
+    double output;
+    if (unitbefore == unitafter){
+        //when unit before = unit after
+        output = toconvert;
+    }
+    else if (unitbefore == 1 && unitafter == 2){
+        //mm to cm
+        output = toconvert/cmtomm;
+    }
+    else if (unitbefore == 1 && unitafter == 3){
+        //mm to m
+        output = toconvert/(mtocm*cmtomm);
+    }
+    else if (unitbefore == 1 && unitafter == 4){
+        //mm to km
+        output = toconvert/(kmtom*mtocm*cmtomm);
+    }
+    else if (unitbefore == 1 && unitafter == 5){
+        //mm to in
+        output = toconvert/(cmtomm*intocm);
+    }
+    else if (unitbefore == 1 && unitafter == 6){
+        //mm to ft
+        output = toconvert/(cmtomm*intocm*fttoin);
+    }
+    else if (unitbefore == 1 && unitafter == 7){
+        //mm to yd
+        output = toconvert/(cmtomm*intocm*fttoin*ydtoft);
+    }
+    else if (unitbefore == 1 && unitafter == 8){
+        //mm to mi
+        output = toconvert/(cmtomm*intocm*fttoin*ydtoft*miletoyd);
+    }
+    else if (unitbefore == 1 && unitafter == 9){
+        //mm to nautical miles
+        output = toconvert/(cmtomm*mtocm*nauticaltometer);
+    }
+    else if (unitbefore == 1 && unitafter == 10){
+        //mm to mils
+        output = toconvert*intomil/(cmtomm*intocm);
+    }
+    else if (unitbefore == 2 && unitafter == 1){
+        //cm to mm
+        output = toconvert*cmtomm;
+    }
+    else if (unitbefore == 2 && unitafter == 3){
+        //cm to m
+        output = toconvert/(mtocm);
+    }
+    else if (unitbefore == 2 && unitafter == 4){
+        //cm to km
+        output = toconvert/(mtocm*kmtom);
+    }
+    else if (unitbefore == 2 && unitafter == 5){
+        //cm to in
+        output = toconvert/intocm;
+    }
+    else if (unitbefore == 2 && unitafter == 6){
+        //cm to ft
+        output = toconvert/(intocm*fttoin);
+    }
+    else if (unitbefore == 2 && unitafter == 7){
+        //cm to yd
+        output = toconvert/(intocm*fttoin*ydtoft);
+    }
+    else if (unitbefore == 2 && unitafter == 8){
+        //cm to mi
+        output = toconvert/(intocm*fttoin*ydtoft*miletoyd);
+    }
+    else if (unitbefore == 2 && unitafter == 9){
+        //cm to nautical miles
+        output = toconvert/(mtocm*nauticaltometer);
+    }
+    else if (unitbefore == 2 && unitafter == 10){
+        //cm to mil
+        output = toconvert*intomil/(intocm);
+    }
+    else if (unitbefore == 3 && unitafter == 1){
+        //m to mm
+        output = toconvert*mtocm*cmtomm;
+    }
+    else if (unitbefore == 3 && unitafter == 2){
+        //m to cm
+        output = toconvert*mtocm;
+    }
+    else if (unitbefore == 3 && unitafter == 4){
+        //m to km
+        output = toconvert/kmtom;
+    }
+    else if (unitbefore == 3 && unitafter == 5){
+        //m to in
+        output = toconvert*mtocm/intocm;
+    }
+    else if (unitbefore == 3 && unitafter == 6){
+        //m to ft
+        output = toconvert*mtocm/(intocm*fttoin);
+    }
+    else if (unitbefore == 3 && unitafter == 7){
+        //m to yd
+        output = toconvert*mtocm/(intocm*fttoin*ydtoft);
+    }
+    else if (unitbefore == 3 && unitafter == 8){
+        //m to mi
+        output = toconvert*mtocm/(intocm*fttoin*ydtoft*miletoyd);
+    }
+    else if (unitbefore == 3 && unitafter == 9){
+        //m to nautical mile
+        output = toconvert/nauticaltometer;
+    }
+    else if (unitbefore == 3 && unitafter == 10){
+        //m to mil
+        output = toconvert*mtocm*intomil/intocm;
+    }
+    else if (unitbefore == 4 && unitafter == 1){
+        //km to mm
+        output = toconvert*kmtom*mtocm*cmtomm;
+    }
+    else if (unitbefore == 4 && unitafter == 2){
+        //km to cm
+        output = toconvert*kmtom*mtocm;
+    }
+    else if (unitbefore == 4 && unitafter == 3){
+        //km to m
+        output = toconvert*kmtom;
+    }
+    else if (unitbefore == 4 && unitafter == 5){
+        //km to in
+        output = toconvert*kmtom*mtocm/intocm;
+    }
+    else if (unitbefore == 4 && unitafter == 6){
+        //km to ft
+        output = toconvert*kmtom*mtocm/(intocm*fttoin);
+    }
+    else if (unitbefore == 4 && unitafter == 7){
+        //km to yd
+        output = toconvert*kmtom*mtocm/(intocm*fttoin*ydtoft);
+    }
+    else if (unitbefore == 4 && unitafter == 8){
+        //km to mi
+        output = toconvert*kmtom*mtocm/(intocm*fttoin*ydtoft*miletoyd);
+    }
+    else if (unitbefore == 4 && unitafter == 9){
+        //km to nautical miles
+        output = toconvert*kmtom/nauticaltometer;
+    }
+    else if (unitbefore == 4 && unitafter == 10){
+        //km to mil
+        output = toconvert*kmtom*mtocm*intomil/intocm;
+    }
+    else if (unitbefore == 5 && unitafter == 1){
+        //in to mm
+        output = toconvert*intocm*cmtomm;
+    }
+    else if (unitbefore == 5 && unitafter == 2){
+        //in to cm
+        output = toconvert*intocm;
+    }
+    else if (unitbefore == 5 && unitafter == 3){
+        //in to m
+        output = toconvert*intocm/mtocm;
+    }
+    else if (unitbefore == 5 && unitafter == 4){
+        //in to km
+        output = toconvert*intocm/(mtocm*kmtom);
+    }
+    else if (unitbefore == 5 && unitafter == 6){
+        //in to ft
+        output = toconvert/fttoin;
+    }
+    else if (unitbefore == 5 && unitafter == 7){
+        //in to yd
+        output = toconvert/(fttoin*ydtoft);
+    }
+    else if (unitbefore == 5 && unitafter == 8){
+        //in to mi
+        output = toconvert/(fttoin*ydtoft*miletoyd);
+    }
+    else if (unitbefore == 5 && unitafter == 9){
+        //in to nautical mile
+        output = toconvert*intocm/(mtocm*nauticaltometer);
+    }
+    else if (unitbefore == 5 && unitafter == 10){
+        //in to mil
+        output = toconvert/intomil;
+    }
+    else if (unitbefore == 6 && unitafter == 1){
+        //ft to mm
+        output = toconvert*fttoin*intocm*cmtomm;
+    }
+    else if (unitbefore == 6 && unitafter == 2){
+        //ft to cm
+        output = toconvert*fttoin*intocm;
+    }
+    else if (unitbefore == 6 && unitafter == 3){
+        //ft to m
+        output = toconvert*fttoin*intocm/mtocm;
+    }
+    else if (unitbefore == 6 && unitafter == 4){
+        //ft to km
+        output = toconvert*fttoin*intocm/(kmtom*mtocm);
+    }
+    else if (unitbefore == 6 && unitafter == 5){
+        //ft to in
+        output = toconvert*fttoin;
+    }
+    else if (unitbefore == 6 && unitafter == 7){
+        //ft to yd
+        output = toconvert/ydtoft;
+    }
+    else if (unitbefore == 6 && unitafter == 8){
+        //ft to mi
+        output = toconvert/(ydtoft*miletoyd);
+    }
+    else if (unitbefore == 6 && unitafter == 9){
+        //ft to nautical miles
+        output = toconvert*fttoin*intocm/(mtocm*nauticaltometer);
+    }
+    else if (unitbefore == 6 && unitafter == 10){
+        //ft to mil
+        output = toconvert*fttoin*intomil;
+    }
+    else if (unitbefore == 7 && unitafter == 1){
+        //yd to mm
+        output = toconvert*ydtoft*fttoin*intocm*cmtomm;
+    }
+    else if (unitbefore == 7 && unitafter == 2){
+        //yd to cm
+        output = toconvert*ydtoft*fttoin*intocm;
+    }
+    else if (unitbefore == 7 && unitafter == 3){
+        //yd to m
+        output = toconvert*ydtoft*fttoin*intocm/mtocm;
+    }
+    else if (unitbefore == 7 && unitafter == 4){
+        //yd to km
+        output = toconvert*ydtoft*fttoin*intocm/(mtocm*kmtom);
+    }
+    else if (unitbefore == 7 && unitafter == 5){
+        //yd to in
+        output = toconvert*ydtoft*fttoin;
+    }
+    else if (unitbefore == 7 && unitafter == 6){
+        //yd to ft
+        output = toconvert*ydtoft;
+    }
+    else if (unitbefore == 7 && unitafter == 8){
+        //yd to mi
+        output = toconvert/miletoyd;
+    }
+    else if (unitbefore == 7 && unitafter == 9){
+        //yd to nautical miles
+        output = toconvert*ydtoft*fttoin*intocm/(mtocm*nauticaltometer);
+    }
+    else if (unitbefore == 7 && unitafter == 10){
+        //yd to mil
+        output = toconvert*ydtoft*fttoin*intomil;
+    }
+    else if (unitbefore == 8 && unitafter == 1){
+        //mi to mm
+        output = toconvert*miletoyd*ydtoft*fttoin*intocm*cmtomm;
+    }
+    else if (unitbefore == 8 && unitafter == 2){
+        //mi to cm
+        output = toconvert*miletoyd*ydtoft*fttoin*intocm;
+    }
+    else if (unitbefore == 8 && unitafter == 3){
+        //mi to m
+        output = toconvert*miletoyd*ydtoft*fttoin*intocm/mtocm;
+    }
+    else if (unitbefore == 8 && unitafter == 4){
+        //mi to km
+        output = toconvert*miletoyd*ydtoft*fttoin*intocm/(mtocm*kmtom);
+    }
+    else if (unitbefore == 8 && unitafter == 5){
+        //mi to in
+        output = toconvert*miletoyd*ydtoft*fttoin;
+    }
+    else if (unitbefore == 8 && unitafter == 6){
+        //mi to ft
+        output = toconvert*miletoyd*ydtoft;
+    }
+    else if (unitbefore == 8 && unitafter == 7){
+        //mi to yd
+        output = toconvert*miletoyd;
+    }
+    else if (unitbefore == 8 && unitafter == 9){
+        //mi to nautical miles
+        output = toconvert*miletoyd*ydtoft*fttoin*intocm/(mtocm*nauticaltometer);
+    }
+    else if (unitbefore == 8 && unitafter == 10){
+        //mi to mil
+        output = toconvert*miletoyd*ydtoft*fttoin*intomil;
+    }
+    else if (unitbefore == 9 && unitafter == 1){
+        //nautical mile to mm
+        output = toconvert*nauticaltometer*mtocm*cmtomm;
+    }
+    else if (unitbefore == 9 && unitafter == 2){
+        //nautical mile to cm
+        output = toconvert*nauticaltometer*mtocm;
+    }
+    else if (unitbefore == 9 && unitafter == 3){
+        //nautical mile to m
+        output = toconvert*nauticaltometer;
+    }
+    else if (unitbefore == 9 && unitafter == 4){
+        //nautical mile to km
+        output = toconvert*nauticaltometer/kmtom;
+    }
+    else if (unitbefore == 9 && unitafter == 5){
+        //nautical mile to in
+        output = toconvert*nauticaltometer*mtocm/intocm;
+    }
+    else if (unitbefore == 9 && unitafter == 6){
+        //nautical mile to ft
+        output = toconvert*nauticaltometer*mtocm/(intocm*fttoin);
+    }
+    else if (unitbefore == 9 && unitafter == 7){
+        //nautical mile to yd
+        output = toconvert*nauticaltometer*mtocm/(intocm*fttoin*ydtoft);
+    }
+    else if (unitbefore == 9 && unitafter == 8){
+        //nautical mile to mi
+        output = toconvert*nauticaltometer*mtocm/(intocm*fttoin*ydtoft*miletoyd);
+    }
+    else if (unitbefore == 9 && unitafter == 10){
+        //nautical mile to mil
+        output = toconvert*nauticaltometer*mtocm*intomil/(intocm);
+    }
+    else if (unitbefore == 10 && unitafter == 1){
+        //mil to mm
+        output = toconvert*intocm*cmtomm/(intomil);
+    }
+    else if (unitbefore == 10 && unitafter == 2){
+        //mil to cm
+        output = toconvert*intocm/(intomil);
+    }
+    else if (unitbefore == 10 && unitafter == 3){
+        //mil to m
+        output = toconvert*intocm/(intomil*mtocm);
+    }
+    else if (unitbefore == 10 && unitafter == 4){
+        //mil to km
+        output = toconvert*intocm/(intomil*mtocm*kmtom);
+    }
+    else if (unitbefore == 10 && unitafter == 5){
+        //mil to in
+        output = toconvert/intomil;
+    }
+    else if (unitbefore == 10 && unitafter == 6){
+        //mil to ft
+        output = toconvert/(intomil*fttoin);
+    }
+    else if (unitbefore == 10 && unitafter == 7){
+        //mil to yd
+        output = toconvert/(intomil*fttoin*ydtoft);
+    }
+    else if (unitbefore == 10 && unitafter == 8){
+        //mil to mi
+        output = toconvert/(intomil*fttoin*ydtoft*miletoyd);
+    }
+    else if (unitbefore == 10 && unitafter == 9){
+        //mil to nautical mile
+        output = toconvert*intocm/(intomil*mtocm*nauticaltometer);
+    }
+    else{
+        //default case
+        cout <<"It should not happen!" <<endl; 
+        output = -1.0;
+    }
+    return output;
 }
 
 //currency conversion
