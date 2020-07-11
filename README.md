@@ -1,5 +1,10 @@
 # Project Smartcalc
-Currently there is only scientific calculator which runs on CUI
+Project smartcalc is planned as C++ project for summer 2020.
+
+## Features
+Current features
+- Scientific calculator - Console - Completed
+- Conversion calculator - Console - WIP
 
 More features are planned to be added!
 
