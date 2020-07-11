@@ -27,17 +27,32 @@ void currencyCalc();
 
 //Area - acre, square feet, square meter, etc.
 void areaCalc();
+string numtoAreaunit(int input, bool & toEnd);
+double areaConversion(int unitbefore, int unitafter, double toconvert);
 
 //Temperature - Kelvin, Celsius, Fahrenheit
 void temperatureCalc();
+string numtoTemperatureunit(int input, bool & toEnd);
+double temperatureConversion(int unitbefore, int unitafter, double toconvert);
 
 //Data - bit, byte, ...
 void dataCalc();
+string numtoDataunit(int input, bool & toEnd);
+double dataConversion(int unitbefore, int unitafter, double toconvert);
 
 //Speed - meter per second, inch per second, km/h, etc.
 void speedCalc();
+string numtoSpeedunit(int input, bool & toEnd);
+double speedConversion(int unitbefore, int unitafter, double toconvert);
 
 //Time - milisecond, second, ..., week, etc.
 void timeCalc();
+string numtoTimeunit(int input, bool & toEnd);
+double timeConversion(int unitbefore, int unitafter, double toconvert);
+
+//Volume
+void volumeCalc();
+string numtoVolumeunit(int input, bool & toEnd);
+double volumeConversion(int unitbefore, int unitafter, double toconvert);
 
 #endif

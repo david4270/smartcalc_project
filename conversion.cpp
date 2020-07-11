@@ -25,14 +25,29 @@ const double intocm = 2.54; //1in = 2.54cm
 //currency conversion parameters
 
 //area conversion parameters
-
-//temperature conversion paramenters
+const double acretosqft = 43560; //1 acre = 43560 ft^2
+const double hectaretoare = 100; //1 hectare = 100 are
+const double hectaretosqm = 10000; //1 hectare = 10000 m^2
+const double sqkmtosqm = 1000000; // 1 km^2 = 1000000 m^2
+const double sqmtosqcm = 10000; // 1m^2 = 10000cm^2
+const double sqcmtosqmm = 100; // 1cm^2 = 100mm^2
+const double sqmiletosqyd = 3097600; //1 mile^2 = 3097600 yd^2
+const double sqydtosqin = 9; //1 yd^2 = 9 ft^2
+const double sqintosqft = 144; //1 ft^2 = 144in^2
+const double sqintosqcm = 6.4516; //1 in^2 = 6.4516 cm^2
 
 //data conversion parameters
+const double bytetobit = 8;
+const double kbtobyte = 1024;
 
 //speed conversion paramenters
 
 //time conversion parameters
+const double stoms = 1000;
+const double dtoh = 24;
+const double wktod = 7;
+const double yrtod = 365; //not always though...
+//volume conversion parameters
 
 //Conversion calculator
 void conversionCalc(){
@@ -48,6 +63,7 @@ void conversionCalc(){
         cout << "6. Data" << endl;
         cout << "7. Speed" << endl;
         cout << "8. Time" << endl;
+        cout << "9. Volume" <<endl;
         cout << "0. Exit" << endl;
         cout << endl;
         cout << "Type feature to execute: ";
@@ -65,6 +81,7 @@ void conversionCalc(){
             case 6: dataCalc(); break;
             case 7: speedCalc(); break;
             case 8: timeCalc(); break;
+            case 9: volumeCalc(); break;
             default: cout << "Error! Wrong input to execute. Try again..." <<endl; break;
         }
         cout << endl;
@@ -835,17 +852,288 @@ void currencyCalc(){
 
 //area conversion
 void areaCalc(){
+    cout << "Area conversion calculator" <<endl;
+    
+    int beforeChange, afterChange;
+    double toConvert, afterConvert;
+    string unitBeforeChange, unitAfterChange;
+    string statement;
+    bool toEnd = false;
+    while (!toEnd){
+        cout << "Type corresponding number to make your choice" <<endl;
+        cout << "1. acres (ac)" << endl;
+        cout << "2. ares (a)" << endl;
+        cout << "3. hectares (ha)" << endl;
+        cout << "4. square millimeters (mm^2)" << endl;
+        cout << "5. square centimeters (cm^2)" << endl;
+        cout << "6. square meters (m^2)" << endl;
+        cout << "7. square kilometers (km^2)" <<endl;
+        cout << "8. square feet (ft^2)" <<endl;
+        cout << "9. square inches (in^2)" <<endl;
+        cout << "10. square yards (yd^2)" <<endl;
+        cout << "11. square miles (mi^2)" <<endl;
+        cout << "0. exit" <<endl;
 
+        cout << "Which unit do you want to convert from?" << endl;
+        cin >> beforeChange;
+        unitBeforeChange = numtoAreaunit(beforeChange, toEnd);
+        if(toEnd) break;
+        
+        cout << "What is the value to convert in " << unitBeforeChange << endl;
+        cin >> toConvert;
+
+        cout << "Which unit do you want to convert to?" << endl;
+        cin >> afterChange;
+        unitAfterChange = numtoAreaunit(afterChange, toEnd);
+        if(toEnd) break;
+
+        afterConvert = areaConversion(beforeChange,afterChange,toConvert);
+        if (afterConvert<0){
+            toEnd = true; 
+            break;
+        }   
+        //Enable this if there is a plan to save history with filestream
+        //statement = to_string(toConvert) + " " + unitBeforeChange +" is converted into " + to_string(afterConvert) + " " + unitAfterChange;
+        cout << setprecision(2) << toConvert << " " << unitBeforeChange << " is converted into " << setprecision(2) << afterConvert << " " << unitAfterChange <<endl;
+    }
+    cout << "Returning back to selection menu..." <<endl;
+}
+
+string numtoAreaunit(int input, bool & toEnd){
+    string output;
+    switch (input){
+        case 0:
+            output = "";
+            toEnd = true;
+            break;
+        case 1: output = "acres (ac)"; break;
+        case 2: output = "ares (a)"; break;
+        case 3: output = "hectares (ha)"; break;
+        case 4: output = "square millimeters (mm^2)"; break;
+        case 5: output = "square centimeters (cm^2)"; break;
+        case 6: output = "square meters (m^2)"; break;
+        case 7: output = "square kilometers (km^2)"; break;
+        case 8: output = "square feet (ft^2)"; break;
+        case 9: output = "square inches (in^2)"; break;
+        case 10: output = "square yards (yd^2)"; break;
+        case 11: output = "square miles (mi^2)"; break;
+        default:
+            cout << "Invalid input!" <<endl;
+            output = "";
+            break;
+    }
+    return output;
+}
+
+double areaConversion(int unitbefore, int unitafter, double toconvert){
+    double output;
+    if (unitbefore == unitafter){
+        //when unit before = unit after
+        output = toconvert;
+    }
+    else if (unitbefore == 1 && unitafter == 2){
+        //standard ton -> US ton
+        output = toconvert*(tonStdtoKg*kgtoGram/lbtoGram)/tonUStoLb; 
+    }
+    else{
+        //default case
+        cout <<"It should not happen!" <<endl; 
+        output = -1.0;
+    }
+    return output;
 }
 
 //temperature conversion
 void temperatureCalc(){
+    cout << "Temperature conversion calculator" <<endl;
+    
+    int beforeChange, afterChange;
+    double toConvert, afterConvert;
+    string unitBeforeChange, unitAfterChange;
+    string statement;
+    bool toEnd = false;
+    while (!toEnd){
+        cout << "Type corresponding number to make your choice" <<endl;
+        cout << "1. celsius (C)" << endl;
+        cout << "2. kelvin (K)" << endl;
+        cout << "3. fahrenheit (F)" << endl;
+        cout << "0. exit" <<endl;
 
+        cout << "Which unit do you want to convert from?" << endl;
+        cin >> beforeChange;
+        unitBeforeChange = numtoTemperatureunit(beforeChange, toEnd);
+        if(toEnd) break;
+        
+        cout << "What is the value to convert in " << unitBeforeChange << endl;
+        cin >> toConvert;
+
+        cout << "Which unit do you want to convert to?" << endl;
+        cin >> afterChange;
+        unitAfterChange = numtoTemperatureunit(afterChange, toEnd);
+        if(toEnd) break;
+
+        afterConvert = temperatureConversion(beforeChange,afterChange,toConvert);
+        if (afterConvert<-460){
+            //The lowest in fahrenheit is -459.67. I just gave some offset. It will be edited when physics change
+            toEnd = true; 
+            break;
+        }   
+        //Enable this if there is a plan to save history with filestream
+        //statement = to_string(toConvert) + " " + unitBeforeChange +" is converted into " + to_string(afterConvert) + " " + unitAfterChange;
+        cout << setprecision(2) << toConvert << " " << unitBeforeChange << " is converted into " << setprecision(2) << afterConvert << " " << unitAfterChange <<endl;
+    }
+    cout << "Returning back to selection menu..." <<endl;
+}
+
+string numtoTemperatureunit(int input, bool & toEnd){
+    string output;
+    switch (input){
+        case 0:
+            output = "";
+            toEnd = true;
+            break;
+        case 1: output = "celsius (C)"; break;
+        case 2: output = "kelvin (K)"; break;
+        case 3: output = "fahrenheit (F)"; break;
+        default:
+            cout << "Invalid input!" <<endl;
+            output = "";
+            break;
+    }
+    return output;
+}
+
+double temperatureConversion(int unitbefore, int unitafter, double toconvert){
+    double output;
+    if (unitbefore == unitafter){
+        //when unit before = unit after
+        output = toconvert;
+    }
+    else if (unitbefore == 1 && unitafter == 2){
+        //C -> K
+        output = toconvert+273.15; 
+    }
+    else if (unitbefore == 1 && unitafter == 3){
+        //C -> F
+        output = toconvert*1.8 + 32; 
+    }
+    else if (unitbefore == 2 && unitafter == 1){
+        //K -> C
+        output = toconvert-273.15; 
+    }
+    else if (unitbefore == 2 && unitafter == 3){
+        //K -> F
+        output = (toconvert-273.15)*1.8+32; 
+    }
+    else if (unitbefore == 3 && unitafter == 1){
+        //F -> C
+        output = (toconvert-32)/1.8; 
+    }
+    else if (unitbefore == 3 && unitafter == 2){
+        //F -> K
+        output = ((toconvert-32)/1.8)-273.15; 
+    }
+    else{
+        //default case
+        cout <<"It should not happen!" <<endl; 
+        output = -500.0;
+    }
+    return output;
 }
 
 //data conversion
 void dataCalc(){
+    cout << "Data conversion calculator" <<endl;
+    
+    int beforeChange, afterChange;
+    double toConvert, afterConvert;
+    string unitBeforeChange, unitAfterChange;
+    string statement;
+    bool toEnd = false;
+    while (!toEnd){
+        cout << "Type corresponding number to make your choice" <<endl;
+        cout << "1. bit" << endl;
+        cout << "2. byte" << endl;
+        cout << "3. kilobyte (KiB)" << endl;
+        cout << "4. megabyte (MiB)" << endl;
+        cout << "5. gigabyte (GiB)" << endl;
+        cout << "6. terabyte (TiB)" << endl;
+        cout << "7. petabyte (PiB)" << endl;
+        cout << "8. exabyte (EiB)" << endl;
+        cout << "0. exit" <<endl;
 
+        cout << "Which unit do you want to convert from?" << endl;
+        cin >> beforeChange;
+        unitBeforeChange = numtoDataunit(beforeChange, toEnd);
+        if(toEnd) break;
+        
+        cout << "What is the value to convert in " << unitBeforeChange << endl;
+        cin >> toConvert;
+
+        cout << "Which unit do you want to convert to?" << endl;
+        cin >> afterChange;
+        unitAfterChange = numtoDataunit(afterChange, toEnd);
+        if(toEnd) break;
+
+        afterConvert = dataConversion(beforeChange,afterChange,toConvert);
+        if (afterConvert<0){
+            toEnd = true; 
+            break;
+        }   
+        //Enable this if there is a plan to save history with filestream
+        //statement = to_string(toConvert) + " " + unitBeforeChange +" is converted into " + to_string(afterConvert) + " " + unitAfterChange;
+        cout << setprecision(2) << toConvert << " " << unitBeforeChange << " is converted into " << setprecision(2) << afterConvert << " " << unitAfterChange <<endl;
+    }
+    cout << "Returning back to selection menu..." <<endl;
+}
+
+string numtoDataunit(int input, bool & toEnd){
+    string output;
+    switch (input){
+        case 0:
+            output = "";
+            toEnd = true;
+            break;
+        case 1: output = "bit"; break;
+        case 2: output = "byte"; break;
+        case 3: output = "kilobyte (KiB)"; break;
+        case 4: output = "megabyte (MiB)"; break;
+        case 5: output = "gigabyte (GiB)"; break;
+        case 6: output = "terabyte (TiB)"; break;
+        case 7: output = "petabyte (PiB)"; break;
+        case 8: output = "exabyte (EiB)"; break;
+        default:
+            cout << "Invalid input!" <<endl;
+            output = "";
+            break;
+    }
+    return output;
+}
+
+double dataConversion(int unitbefore, int unitafter, double toconvert){
+    double output;
+    if (unitbefore == unitafter){
+        //when unit before = unit after
+        output = toconvert;
+    }
+    else if (unitbefore == 1 && unitafter >= 2 && unitafter <= 8){
+        //bit to kilobyte and other ~bytes
+        output = toconvert/(bytetobit*pow(kbtobyte,unitafter-2)); 
+    }
+    else if (unitbefore >= 2 && unitbefore <=8 && unitafter >= 2 && unitafter <= 8){
+        //byte to ~byte
+        output = toconvert*(pow(kbtobyte,unitbefore-unitafter)); 
+    }
+    else if (unitbefore >= 2 && unitbefore <= 8 && unitafter == 1){
+        //~byte to bit
+        output = toconvert*bytetobit*(pow(kbtobyte,unitbefore-2)); 
+    }
+    else{
+        //default case
+        cout <<"It should not happen!" <<endl; 
+        output = -1.0;
+    }
+    return output;
 }
 
 //speed conversion
@@ -853,7 +1141,136 @@ void speedCalc(){
 
 }
 
+string numtoSpeedunit(int input, bool & toEnd){
+
+}
+
+double speedConversion(int unitbefore, int unitafter, double toconvert){
+    double output;
+    if (unitbefore == unitafter){
+        //when unit before = unit after
+        output = toconvert;
+    }
+    else if (unitbefore == 1 && unitafter == 2){
+        //standard ton -> US ton
+        output = toconvert*(tonStdtoKg*kgtoGram/lbtoGram)/tonUStoLb; 
+    }
+    else{
+        //default case
+        cout <<"It should not happen!" <<endl; 
+        output = -1.0;
+    }
+    return output;
+}
+
 //time conversion
 void timeCalc(){
+    cout << "Time conversion calculator" <<endl;
+    
+    int beforeChange, afterChange;
+    double toConvert, afterConvert;
+    string unitBeforeChange, unitAfterChange;
+    string statement;
+    bool toEnd = false;
+    while (!toEnd){
+        cout << "Type corresponding number to make your choice" <<endl;
+        cout << "1. millisecond (ms)" << endl;
+        cout << "2. second (s)" << endl;
+        cout << "3. minute (m)" << endl;
+        cout << "4. hour (h)" << endl;
+        cout << "5. day (d)" << endl;
+        cout << "6. week (w)" << endl;
+        cout << "7. year (y)" << endl;
+        cout << "0. exit" <<endl;
 
+        cout << "Which unit do you want to convert from?" << endl;
+        cin >> beforeChange;
+        unitBeforeChange = numtoDataunit(beforeChange, toEnd);
+        if(toEnd) break;
+        
+        cout << "What is the value to convert in " << unitBeforeChange << endl;
+        cin >> toConvert;
+
+        cout << "Which unit do you want to convert to?" << endl;
+        cin >> afterChange;
+        unitAfterChange = numtoDataunit(afterChange, toEnd);
+        if(toEnd) break;
+
+        afterConvert = dataConversion(beforeChange,afterChange,toConvert);
+        if (afterConvert<0){
+            toEnd = true; 
+            break;
+        }   
+        //Enable this if there is a plan to save history with filestream
+        //statement = to_string(toConvert) + " " + unitBeforeChange +" is converted into " + to_string(afterConvert) + " " + unitAfterChange;
+        cout << setprecision(2) << toConvert << " " << unitBeforeChange << " is converted into " << setprecision(2) << afterConvert << " " << unitAfterChange <<endl;
+    }
+    cout << "Returning back to selection menu..." <<endl;
+}
+
+string numtoTimeunit(int input, bool & toEnd){
+    string output;
+    switch (input){
+        case 0:
+            output = "";
+            toEnd = true;
+            break;
+        case 1: output = "millisecond (ms)"; break;
+        case 2: output = "second (s)"; break;
+        case 3: output = "minute (m)"; break;
+        case 4: output = "hour (h)"; break;
+        case 5: output = "day (d)"; break;
+        case 6: output = "week (w)"; break;
+        case 7: output = "year (y)"; break;
+        default:
+            cout << "Invalid input!" <<endl;
+            output = "";
+            break;
+    }
+    return output;
+}
+
+double timeConversion(int unitbefore, int unitafter, double toconvert){
+    double output;
+    if (unitbefore == unitafter){
+        //when unit before = unit after
+        output = toconvert;
+    }
+    else if (unitbefore == 1 && unitafter == 2){
+        //standard ton -> US ton
+        output = toconvert*(tonStdtoKg*kgtoGram/lbtoGram)/tonUStoLb; 
+    }
+    else{
+        //default case
+        cout <<"It should not happen!" <<endl; 
+        output = -1.0;
+    }
+    return output;
+}
+
+//volume conversion
+void volumeCalc(){
+
+}
+
+string numtoVolumeunit(int input, bool & toEnd){
+
+}
+
+double volumeConversion(int unitbefore, int unitafter, double toconvert){
+    double output;
+    if (unitbefore == unitafter){
+        //when unit before = unit after
+        output = toconvert;
+    }
+    else if (unitbefore == 1 && unitafter == 2){
+        //standard ton -> US ton
+        output = toconvert*(tonStdtoKg*kgtoGram/lbtoGram)/tonUStoLb; 
+    }
+    else{
+        //default case
+        cout <<"It should not happen!" <<endl; 
+        output = -1.0;
+    }
+    return output;
 }
