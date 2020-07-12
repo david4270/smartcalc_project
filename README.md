@@ -25,7 +25,7 @@ Jul 11, 2020 - Conversion calculator progress
 - Data conversion - complete
 - Speed conversion - not started
 - Time conversion - WIP
-- Volume conversion - not started
+- Volume conversion - WIP
 
 ## Errors
 Report me if you find any!

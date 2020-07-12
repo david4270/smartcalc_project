@@ -32,8 +32,8 @@ const double sqkmtosqm = 1000000; // 1 km^2 = 1000000 m^2
 const double sqmtosqcm = 10000; // 1m^2 = 10000cm^2
 const double sqcmtosqmm = 100; // 1cm^2 = 100mm^2
 const double sqmiletosqyd = 3097600; //1 mile^2 = 3097600 yd^2
-const double sqydtosqin = 9; //1 yd^2 = 9 ft^2
-const double sqintosqft = 144; //1 ft^2 = 144in^2
+const double sqydtosqft = 9; //1 yd^2 = 9 ft^2
+const double sqfttosqin = 144; //1 ft^2 = 144in^2
 const double sqintosqcm = 6.4516; //1 in^2 = 6.4516 cm^2
 
 //data conversion parameters
@@ -868,8 +868,8 @@ void areaCalc(){
         cout << "5. square centimeters (cm^2)" << endl;
         cout << "6. square meters (m^2)" << endl;
         cout << "7. square kilometers (km^2)" <<endl;
-        cout << "8. square feet (ft^2)" <<endl;
-        cout << "9. square inches (in^2)" <<endl;
+        cout << "8. square inches (in^2)" <<endl;
+        cout << "9. square feet (ft^2)" <<endl;
         cout << "10. square yards (yd^2)" <<endl;
         cout << "11. square miles (mi^2)" <<endl;
         cout << "0. exit" <<endl;
@@ -913,8 +913,8 @@ string numtoAreaunit(int input, bool & toEnd){
         case 5: output = "square centimeters (cm^2)"; break;
         case 6: output = "square meters (m^2)"; break;
         case 7: output = "square kilometers (km^2)"; break;
-        case 8: output = "square feet (ft^2)"; break;
-        case 9: output = "square inches (in^2)"; break;
+        case 8: output = "square inches (in^2)"; break;
+        case 9: output = "square feet (ft^2)"; break;
         case 10: output = "square yards (yd^2)"; break;
         case 11: output = "square miles (mi^2)"; break;
         default:
@@ -932,8 +932,444 @@ double areaConversion(int unitbefore, int unitafter, double toconvert){
         output = toconvert;
     }
     else if (unitbefore == 1 && unitafter == 2){
-        //standard ton -> US ton
-        output = toconvert*(tonStdtoKg*kgtoGram/lbtoGram)/tonUStoLb; 
+        //acre -> are
+        output = toconvert*acretosqft*sqfttosqin*sqintosqcm*hectaretoare/(sqmtosqcm*hectaretosqm); 
+    }
+    else if (unitbefore == 1 && unitafter == 3){
+        //acre -> hectare
+        output = toconvert; 
+    }
+    else if (unitbefore == 1 && unitafter == 4){
+        //acre -> sqmm
+        output = toconvert; 
+    }
+    else if (unitbefore == 1 && unitafter == 5){
+        //acre -> sqcm
+        output = toconvert; 
+    }
+    else if (unitbefore == 1 && unitafter == 6){
+        //acre -> sqm
+        output = toconvert; 
+    }
+    else if (unitbefore == 1 && unitafter == 7){
+        //acre -> sqkm
+        output = toconvert; 
+    }
+    else if (unitbefore == 1 && unitafter == 8){
+        //acre -> sqin
+        output = toconvert; 
+    }
+    else if (unitbefore == 1 && unitafter == 9){
+        //acre -> sqft
+        output = toconvert; 
+    }
+    else if (unitbefore == 1 && unitafter == 10){
+        //acre ->sqyd
+        output = toconvert; 
+    }
+    else if (unitbefore == 1 && unitafter == 11){
+        //acre -> sqmi
+        output = toconvert; 
+    }
+    else if (unitbefore == 2 && unitafter == 1){
+        //are -> acre
+        output = toconvert*(sqmtosqcm*hectaretosqm)/(acretosqft*sqfttosqin*sqintosqcm*hectaretoare); 
+    }
+    else if (unitbefore == 2 && unitafter == 3){
+        //are -> hectare
+        output = toconvert; 
+    }
+    else if (unitbefore == 2 && unitafter == 4){
+        //are -> sqmm
+        output = toconvert; 
+    }
+    else if (unitbefore == 2 && unitafter == 5){
+        //are -> sqcm
+        output = toconvert; 
+    }
+    else if (unitbefore == 2 && unitafter == 6){
+        //are -> sqm
+        output = toconvert; 
+    }
+    else if (unitbefore == 2 && unitafter == 7){
+        //are -> sqkm
+        output = toconvert; 
+    }
+    else if (unitbefore == 2 && unitafter == 8){
+        //are -> sqin
+        output = toconvert; 
+    }
+    else if (unitbefore == 2 && unitafter == 9){
+        //are -> sqft
+        output = toconvert; 
+    }
+    else if (unitbefore == 2 && unitafter == 10){
+        //are ->sqyd
+        output = toconvert; 
+    }
+    else if (unitbefore == 2 && unitafter == 11){
+        //are -> sqmi
+        output = toconvert; 
+    }
+    else if (unitbefore == 3 && unitafter == 1){
+        //hectare -> acre
+        output = toconvert; 
+    }
+    else if (unitbefore == 3 && unitafter == 2){
+        //hectare -> are
+        output = toconvert; 
+    }
+    else if (unitbefore == 3 && unitafter == 4){
+        //hectare -> sqmm
+        output = toconvert; 
+    }
+    else if (unitbefore == 3 && unitafter == 5){
+        //hectare -> sqcm
+        output = toconvert; 
+    }
+    else if (unitbefore == 3 && unitafter == 6){
+        //hectare -> sqm
+        output = toconvert; 
+    }
+    else if (unitbefore == 3 && unitafter == 7){
+        //hectare -> sqkm
+        output = toconvert; 
+    }
+    else if (unitbefore == 3 && unitafter == 8){
+        //hectare -> sqin
+        output = toconvert; 
+    }
+    else if (unitbefore == 3 && unitafter == 9){
+        //hectare -> sqft
+        output = toconvert; 
+    }
+    else if (unitbefore == 3 && unitafter == 10){
+        //hectare ->sqyd
+        output = toconvert; 
+    }
+    else if (unitbefore == 3 && unitafter == 11){
+        //hectare -> sqmi
+        output = toconvert; 
+    }
+    else if (unitbefore == 4 && unitafter == 1){
+        //sqmm -> acre
+        output = toconvert; 
+    }
+    else if (unitbefore == 4 && unitafter == 2){
+        //sqmm -> are
+        output = toconvert; 
+    }
+    else if (unitbefore == 4 && unitafter == 3){
+        //sqmm -> hectare
+        output = toconvert; 
+    }
+    else if (unitbefore == 4 && unitafter == 5){
+        //sqmm -> sqcm
+        output = toconvert; 
+    }
+    else if (unitbefore == 4 && unitafter == 6){
+        //sqmm -> sqm
+        output = toconvert; 
+    }
+    else if (unitbefore == 4 && unitafter == 7){
+        //sqmm -> sqkm
+        output = toconvert; 
+    }
+    else if (unitbefore == 4 && unitafter == 8){
+        //sqmm -> sqin
+        output = toconvert; 
+    }
+    else if (unitbefore == 4 && unitafter == 9){
+        //sqmm -> sqft
+        output = toconvert; 
+    }
+    else if (unitbefore == 4 && unitafter == 10){
+        //sqmm ->sqyd
+        output = toconvert; 
+    }
+    else if (unitbefore == 4 && unitafter == 11){
+        //sqmm -> sqmi
+        output = toconvert; 
+    }
+    else if (unitbefore == 5 && unitafter == 1){
+        //sqcm -> acre
+        output = toconvert; 
+    }
+    else if (unitbefore == 5 && unitafter == 2){
+        //sqcm -> are
+        output = toconvert; 
+    }
+    else if (unitbefore == 5 && unitafter == 3){
+        //sqcm -> hectare
+        output = toconvert; 
+    }
+    else if (unitbefore == 5 && unitafter == 4){
+        //sqcm -> sqmm
+        output = toconvert; 
+    }
+    else if (unitbefore == 5 && unitafter == 6){
+        //sqcm -> sqm
+        output = toconvert; 
+    }
+    else if (unitbefore == 5 && unitafter == 7){
+        //sqcm -> sqkm
+        output = toconvert; 
+    }
+    else if (unitbefore == 5 && unitafter == 8){
+        //sqcm -> sqin
+        output = toconvert; 
+    }
+    else if (unitbefore == 5 && unitafter == 9){
+        //sqcm -> sqft
+        output = toconvert; 
+    }
+    else if (unitbefore == 5 && unitafter == 10){
+        //sqcm ->sqyd
+        output = toconvert; 
+    }
+    else if (unitbefore == 5 && unitafter == 11){
+        //sqcm -> sqmi
+        output = toconvert; 
+    }
+    else if (unitbefore == 6 && unitafter == 1){
+        //sqm -> acre
+        output = toconvert; 
+    }
+    else if (unitbefore == 6 && unitafter == 2){
+        //sqm -> are
+        output = toconvert; 
+    }
+    else if (unitbefore == 6 && unitafter == 3){
+        //sqm -> hectare
+        output = toconvert; 
+    }
+    else if (unitbefore == 6 && unitafter == 4){
+        //sqm -> sqmm
+        output = toconvert; 
+    }
+    else if (unitbefore == 6 && unitafter == 5){
+        //sqm -> sqcm
+        output = toconvert; 
+    }
+    else if (unitbefore == 6 && unitafter == 7){
+        //sqm -> sqkm
+        output = toconvert; 
+    }
+    else if (unitbefore == 6 && unitafter == 8){
+        //sqm -> sqin
+        output = toconvert; 
+    }
+    else if (unitbefore == 6 && unitafter == 9){
+        //sqm -> sqft
+        output = toconvert; 
+    }
+    else if (unitbefore == 6 && unitafter == 10){
+        //sqm ->sqyd
+        output = toconvert; 
+    }
+    else if (unitbefore == 6 && unitafter == 11){
+        //sqm -> sqmi
+        output = toconvert; 
+    }
+    else if (unitbefore == 7 && unitafter == 1){
+        //sqkm -> acre
+        output = toconvert; 
+    }
+    else if (unitbefore == 7 && unitafter == 2){
+        //sqkm -> are
+        output = toconvert; 
+    }
+    else if (unitbefore == 7 && unitafter == 3){
+        //sqkm -> hectare
+        output = toconvert; 
+    }
+    else if (unitbefore == 7 && unitafter == 4){
+        //sqkm -> sqmm
+        output = toconvert; 
+    }
+    else if (unitbefore == 7 && unitafter == 5){
+        //sqkm -> sqcm
+        output = toconvert; 
+    }
+    else if (unitbefore == 7 && unitafter == 6){
+        //sqkm -> sqm
+        output = toconvert; 
+    }
+    else if (unitbefore == 7 && unitafter == 8){
+        //sqkm -> sqin
+        output = toconvert; 
+    }
+    else if (unitbefore == 7 && unitafter == 9){
+        //sqkm -> sqft
+        output = toconvert; 
+    }
+    else if (unitbefore == 7 && unitafter == 10){
+        //sqkm ->sqyd
+        output = toconvert; 
+    }
+    else if (unitbefore == 7 && unitafter == 11){
+        //sqkm -> sqmi
+        output = toconvert; 
+    }
+    else if (unitbefore == 8 && unitafter == 1){
+        //sqin -> acre
+        output = toconvert; 
+    }
+    else if (unitbefore == 8 && unitafter == 2){
+        //sqin -> are
+        output = toconvert; 
+    }
+    else if (unitbefore == 8 && unitafter == 3){
+        //sqin -> hectare
+        output = toconvert; 
+    }
+    else if (unitbefore == 8 && unitafter == 4){
+        //sqin -> sqmm
+        output = toconvert; 
+    }
+    else if (unitbefore == 8 && unitafter == 5){
+        //sqin -> sqcm
+        output = toconvert; 
+    }
+    else if (unitbefore == 8 && unitafter == 6){
+        //sqin -> sqm
+        output = toconvert; 
+    }
+    else if (unitbefore == 8 && unitafter == 7){
+        //sqin -> sqkm
+        output = toconvert; 
+    }
+    else if (unitbefore == 8 && unitafter == 9){
+        //sqin -> sqft
+        output = toconvert; 
+    }
+    else if (unitbefore == 8 && unitafter == 10){
+        //sqin ->sqyd
+        output = toconvert; 
+    }
+    else if (unitbefore == 8 && unitafter == 11){
+        //sqin -> sqmi
+        output = toconvert; 
+    }
+    else if (unitbefore == 9 && unitafter == 1){
+        //sqft -> acre
+        output = toconvert; 
+    }
+    else if (unitbefore == 9 && unitafter == 2){
+        //sqft -> are
+        output = toconvert; 
+    }
+    else if (unitbefore == 9 && unitafter == 3){
+        //sqft -> hectare
+        output = toconvert; 
+    }
+    else if (unitbefore == 9 && unitafter == 4){
+        //sqft -> sqmm
+        output = toconvert; 
+    }
+    else if (unitbefore == 9 && unitafter == 5){
+        //sqft -> sqcm
+        output = toconvert; 
+    }
+    else if (unitbefore == 9 && unitafter == 6){
+        //sqft -> sqm
+        output = toconvert; 
+    }
+    else if (unitbefore == 9 && unitafter == 7){
+        //sqft -> sqkm
+        output = toconvert; 
+    }
+    else if (unitbefore == 9 && unitafter == 8){
+        //sqft -> sqin
+        output = toconvert; 
+    }
+    else if (unitbefore == 9 && unitafter == 10){
+        //sqft ->sqyd
+        output = toconvert; 
+    }
+    else if (unitbefore == 9 && unitafter == 11){
+        //sqft -> sqmi
+        output = toconvert; 
+    }
+    else if (unitbefore == 10 && unitafter == 1){
+        //sqyd -> acre
+        output = toconvert; 
+    }
+    else if (unitbefore == 10 && unitafter == 2){
+        //sqyd -> are
+        output = toconvert; 
+    }
+    else if (unitbefore == 10 && unitafter == 3){
+        //sqyd -> hectare
+        output = toconvert; 
+    }
+    else if (unitbefore == 10 && unitafter == 4){
+        //sqyd -> sqmm
+        output = toconvert; 
+    }
+    else if (unitbefore == 10 && unitafter == 5){
+        //sqyd -> sqcm
+        output = toconvert; 
+    }
+    else if (unitbefore == 10 && unitafter == 6){
+        //sqyd -> sqm
+        output = toconvert; 
+    }
+    else if (unitbefore == 10 && unitafter == 7){
+        //sqyd -> sqkm
+        output = toconvert; 
+    }
+    else if (unitbefore == 10 && unitafter == 8){
+        //sqyd -> sqin
+        output = toconvert; 
+    }
+    else if (unitbefore == 10 && unitafter == 9){
+        //sqyd ->sqft
+        output = toconvert; 
+    }
+    else if (unitbefore == 10 && unitafter == 11){
+        //sqyd -> sqmi
+        output = toconvert; 
+    }
+    else if (unitbefore == 11 && unitafter == 1){
+        //sqmi -> acre
+        output = toconvert; 
+    }
+    else if (unitbefore == 11 && unitafter == 2){
+        //sqmi -> are
+        output = toconvert; 
+    }
+    else if (unitbefore == 11 && unitafter == 3){
+        //sqmi -> hectare
+        output = toconvert; 
+    }
+    else if (unitbefore == 11 && unitafter == 4){
+        //sqmi -> sqmm
+        output = toconvert; 
+    }
+    else if (unitbefore == 11 && unitafter == 5){
+        //sqmi -> sqcm
+        output = toconvert; 
+    }
+    else if (unitbefore == 11 && unitafter == 6){
+        //sqmi -> sqm
+        output = toconvert; 
+    }
+    else if (unitbefore == 11 && unitafter == 7){
+        //sqmi -> sqkm
+        output = toconvert; 
+    }
+    else if (unitbefore == 11 && unitafter == 8){
+        //sqmi -> sqin
+        output = toconvert; 
+    }
+    else if (unitbefore == 11 && unitafter == 9){
+        //sqmi ->sqft
+        output = toconvert; 
+    }
+    else if (unitbefore == 11 && unitafter == 10){
+        //sqmi -> sqyd
+        output = toconvert; 
     }
     else{
         //default case
@@ -1174,13 +1610,13 @@ void timeCalc(){
     bool toEnd = false;
     while (!toEnd){
         cout << "Type corresponding number to make your choice" <<endl;
-        cout << "1. millisecond (ms)" << endl;
-        cout << "2. second (s)" << endl;
-        cout << "3. minute (m)" << endl;
-        cout << "4. hour (h)" << endl;
-        cout << "5. day (d)" << endl;
-        cout << "6. week (w)" << endl;
-        cout << "7. year (y)" << endl;
+        cout << "1. ms (millisecond)" << endl;
+        cout << "2. s (second)" << endl;
+        cout << "3. m (minute)" << endl;
+        cout << "4. h (hour)" << endl;
+        cout << "5. d (day)" << endl;
+        cout << "6. wk (week)" << endl;
+        cout << "7. yr (year)" << endl;
         cout << "0. exit" <<endl;
 
         cout << "Which unit do you want to convert from?" << endl;
@@ -1215,13 +1651,13 @@ string numtoTimeunit(int input, bool & toEnd){
             output = "";
             toEnd = true;
             break;
-        case 1: output = "millisecond (ms)"; break;
-        case 2: output = "second (s)"; break;
-        case 3: output = "minute (m)"; break;
-        case 4: output = "hour (h)"; break;
-        case 5: output = "day (d)"; break;
-        case 6: output = "week (w)"; break;
-        case 7: output = "year (y)"; break;
+        case 1: output = "ms (millisecond)"; break;
+        case 2: output = "s (second)"; break;
+        case 3: output = "m (minute)"; break;
+        case 4: output = "h (hour)"; break;
+        case 5: output = "d (day)"; break;
+        case 6: output = "wk (week)"; break;
+        case 7: output = "yr (year)"; break;
         default:
             cout << "Invalid input!" <<endl;
             output = "";
@@ -1238,7 +1674,7 @@ double timeConversion(int unitbefore, int unitafter, double toconvert){
     }
     else if (unitbefore == 1 && unitafter == 2){
         //standard ton -> US ton
-        output = toconvert*(tonStdtoKg*kgtoGram/lbtoGram)/tonUStoLb; 
+        output = toconvert; 
     }
     else{
         //default case
@@ -1250,11 +1686,71 @@ double timeConversion(int unitbefore, int unitafter, double toconvert){
 
 //volume conversion
 void volumeCalc(){
+    cout << "Volume conversion calculator" <<endl;
+    
+    int beforeChange, afterChange;
+    double toConvert, afterConvert;
+    string unitBeforeChange, unitAfterChange;
+    string statement;
+    bool toEnd = false;
+    while (!toEnd){
+        cout << "Type corresponding number to make your choice" <<endl;
+        cout << "1. gal (UK gallon)" << endl;
+        cout << "2. gal (US gallon)" << endl;
+        cout << "3. L (liters)" << endl;
+        cout << "4. mL (milliliters)" << endl;
+        cout << "5. cc (cubic centimeters)" << endl;
+        cout << "6. m^3 (cubicmeters)" << endl;
+        cout << "7. in^3 (cubic inches)" << endl;
+        cout << "8. ft^3 (cubic feet)" << endl;
+        cout << "0. exit" <<endl;
 
+        cout << "Which unit do you want to convert from?" << endl;
+        cin >> beforeChange;
+        unitBeforeChange = numtoVolumeunit(beforeChange, toEnd);
+        if(toEnd) break;
+        
+        cout << "What is the value to convert in " << unitBeforeChange << endl;
+        cin >> toConvert;
+
+        cout << "Which unit do you want to convert to?" << endl;
+        cin >> afterChange;
+        unitAfterChange = numtoVolumeunit(afterChange, toEnd);
+        if(toEnd) break;
+
+        afterConvert = volumeConversion(beforeChange,afterChange,toConvert);
+        if (afterConvert<0){
+            toEnd = true; 
+            break;
+        }   
+        //Enable this if there is a plan to save history with filestream
+        //statement = to_string(toConvert) + " " + unitBeforeChange +" is converted into " + to_string(afterConvert) + " " + unitAfterChange;
+        cout << setprecision(2) << toConvert << " " << unitBeforeChange << " is converted into " << setprecision(2) << afterConvert << " " << unitAfterChange <<endl;
+    }
+    cout << "Returning back to selection menu..." <<endl;
 }
 
 string numtoVolumeunit(int input, bool & toEnd){
-
+    string output;
+    switch (input){
+        case 0:
+            output = "";
+            toEnd = true;
+            break;
+        case 1: output = "gal (UK gallon)"; break;
+        case 2: output = "gal (US gallon)"; break;
+        case 3: output = "L (liters)"; break;
+        case 4: output = "mL (milliliters)"; break;
+        case 5: output = "cc (cubic centimeters)"; break;
+        case 6: output = "m^3 (cubicmeters)"; break;
+        case 7: output = "in^3 (cubic inches)"; break;
+        case 8: output = "ft^3 (cubic feet)"; break;
+        default:
+            cout << "Invalid input!" <<endl;
+            output = "";
+            break;
+    }
+    return output;
 }
 
 double volumeConversion(int unitbefore, int unitafter, double toconvert){
@@ -1264,8 +1760,228 @@ double volumeConversion(int unitbefore, int unitafter, double toconvert){
         output = toconvert;
     }
     else if (unitbefore == 1 && unitafter == 2){
-        //standard ton -> US ton
-        output = toconvert*(tonStdtoKg*kgtoGram/lbtoGram)/tonUStoLb; 
+        //gal (UK) -> gal (US)
+        output = toconvert; 
+    }
+    else if (unitbefore == 1 && unitafter == 3){
+        //gal (UK) -> L (liters)
+        output = toconvert;  
+    }
+    else if (unitbefore == 1 && unitafter == 4){
+        //gal (UK) -> mL (milliliters)
+        output = toconvert; 
+    }
+    else if (unitbefore == 1 && unitafter == 5){
+        //gal (UK) -> cc (cubic centimeters)
+        output = toconvert; 
+    }
+    else if (unitbefore == 1 && unitafter == 6){
+        //gal (UK) -> m^3 (cubicmeters)
+        output = toconvert; 
+    }
+    else if (unitbefore == 1 && unitafter == 7){
+        //gal (UK) -> in^3 (cubic inches)
+        output = toconvert;  
+    }
+    else if (unitbefore == 1 && unitafter == 8){
+        //gal (UK) -> ft^3 (cubic feet)
+        output = toconvert; 
+    }
+    else if (unitbefore == 2 && unitafter == 1){
+        //gal (US) -> gal (UK)
+        output = toconvert; 
+    }
+    else if (unitbefore == 2 && unitafter == 3){
+        //gal (US) -> L (liters)
+        output = toconvert; 
+    }
+    else if (unitbefore == 2 && unitafter == 4){
+        //gal (US) -> mL (milliliters)
+        output = toconvert; 
+    }
+    else if (unitbefore == 2 && unitafter == 5){
+        //gal (US) -> cc (cubic centimeters)
+        output = toconvert; 
+    }
+    else if (unitbefore == 2 && unitafter == 6){
+        //gal (US) -> m^3 (cubicmeters)
+        output = toconvert; 
+    }
+    else if (unitbefore == 2 && unitafter == 7){
+        //gal (US) -> in^3 (cubic inches)
+        output = toconvert; 
+    }
+    else if (unitbefore == 2 && unitafter == 8){
+        //gal (US) -> ft^3 (cubic feet)
+        output = toconvert; 
+    }
+    else if (unitbefore == 3 && unitafter == 1){
+        //L (liters) -> gal (UK)
+        output = toconvert; 
+    }
+    else if (unitbefore == 3 && unitafter == 2){
+        //L (liters) -> gal (US)
+        output = toconvert; 
+    }
+    else if (unitbefore == 3 && unitafter == 4){
+        //L (liters) -> mL (milliliters)
+        output = toconvert;
+    }
+    else if (unitbefore == 3 && unitafter == 5){
+        //L (liters) -> cc (cubic centimeters)
+        output = toconvert;
+    }
+    else if (unitbefore == 3 && unitafter == 6){
+        //L (liters) -> m^3 (cubicmeters)
+        output = toconvert;
+    }
+    else if (unitbefore == 3 && unitafter == 7){
+        //L (liters) -> in^3 (cubic inches)
+        output = toconvert;
+    }
+    else if (unitbefore == 3 && unitafter == 8){
+        //L (liters) -> ft^3 (cubic feet)
+        output = toconvert;
+    }
+     else if (unitbefore == 4 && unitafter == 1){
+        //mL (milliliters) -> gal (UK)
+        output = toconvert; 
+    }
+    else if (unitbefore == 4 && unitafter == 2){
+        //mL (milliliters) -> gal (US)
+        output = toconvert; 
+    }
+    else if (unitbefore == 4 && unitafter == 3){
+        //mL (milliliters) -> L (liters)
+        output = toconvert; 
+    }
+    else if (unitbefore == 4 && unitafter == 5){
+        //mL (milliliters) -> cc (cubic centimeters)
+        output = toconvert; 
+    }
+    else if (unitbefore == 4 && unitafter == 6){
+        //mL (milliliters) -> m^3 (cubicmeters)
+        output = toconvert; 
+    }
+    else if (unitbefore == 4 && unitafter == 7){
+        //mL (milliliters) -> in^3 (cubic inches)
+        output = toconvert; 
+    }
+    else if (unitbefore == 4 && unitafter == 8){
+        //mL (milliliters) -> ft^3 (cubic feet)
+        output = toconvert; 
+    }
+    else if (unitbefore == 5 && unitafter == 1){
+        //cc (cubic centimeters) -> gal (UK)
+        output = toconvert; 
+    }
+    else if (unitbefore == 5 && unitafter == 2){
+        //cc (cubic centimeters) -> gal (US)
+        output = toconvert; 
+    }
+    else if (unitbefore == 5 && unitafter == 3){
+        //cc (cubic centimeters) -> L (liters)
+        output = toconvert; 
+    }
+    else if (unitbefore == 5 && unitafter == 4){
+        //cc (cubic centimeters) -> mL (milliliters)
+        output = toconvert; 
+    }
+    else if (unitbefore == 5 && unitafter == 6){
+        //cc (cubic centimeters) -> m^3 (cubicmeters)
+        output = toconvert; 
+    }
+    else if (unitbefore == 5 && unitafter == 7){
+        //cc (cubic centimeters) -> in^3 (cubic inches)
+        output = toconvert; 
+    }
+    else if (unitbefore == 5 && unitafter == 8){
+        //cc (cubic centimeters) -> ft^3 (cubic feet)
+        output = toconvert; 
+    }
+     else if (unitbefore == 6 && unitafter == 1){
+        //m^3 (cubicmeters) -> gal (UK)
+        output = toconvert; 
+    }
+    else if (unitbefore == 6 && unitafter == 2){
+        //m^3 (cubicmeters) -> gal (US)
+        output = toconvert; 
+    }
+    else if (unitbefore == 6 && unitafter == 3){
+        //m^3 (cubicmeters) -> L (liters)
+        output = toconvert; 
+    }
+    else if (unitbefore == 6 && unitafter == 4){
+        //m^3 (cubicmeters) -> mL (milliliters)
+        output = toconvert; 
+    }
+    else if (unitbefore == 6 && unitafter == 5){
+        //m^3 (cubicmeters) -> cc (cubic centimeters)
+        output = toconvert; 
+    }
+    else if (unitbefore == 6 && unitafter == 7){
+        //m^3 (cubicmeters) -> in^3 (cubic inches)
+        output = toconvert; 
+    }
+    else if (unitbefore == 6 && unitafter == 8){
+        //m^3 (cubicmeters) -> ft^3 (cubic feet)
+        output = toconvert; 
+    }
+    else if (unitbefore == 7 && unitafter == 1){
+        //in^3 (cubic inches) -> gal (UK)
+        output = toconvert; 
+    }
+    else if (unitbefore == 7 && unitafter == 2){
+        //in^3 (cubic inches) -> gal (US)
+        output = toconvert; 
+    }
+    else if (unitbefore == 7 && unitafter == 3){
+        //in^3 (cubic inches) -> L (liters)
+        output = toconvert; 
+    }
+    else if (unitbefore == 7 && unitafter == 4){
+        //in^3 (cubic inches) -> mL (milliliters)
+        output = toconvert; 
+    }
+    else if (unitbefore == 7 && unitafter == 5){
+        //in^3 (cubic inches) -> cc (cubic centimeters)
+        output = toconvert; 
+    }
+    else if (unitbefore == 7 && unitafter == 6){
+        //in^3 (cubic inches) -> m^3 (cubicmeters)
+        output = toconvert; 
+    }
+    else if (unitbefore == 7 && unitafter == 8){
+        //in^3 (cubic inches) -> ft^3 (cubic feet)
+        output = toconvert; 
+    }
+     else if (unitbefore == 8 && unitafter == 1){
+        //ft^3 (cubic feet) -> gal (UK)
+        output = toconvert; 
+    }
+    else if (unitbefore == 8 && unitafter == 2){
+        //ft^3 (cubic feet) -> gal (US)
+        output = toconvert; 
+    }
+    else if (unitbefore == 8 && unitafter == 3){
+        //ft^3 (cubic feet) -> L (liters)
+        output = toconvert; 
+    }
+    else if (unitbefore == 8 && unitafter == 4){
+        //ft^3 (cubic feet) -> mL (milliliters)
+        output = toconvert;
+    }
+    else if (unitbefore == 8 && unitafter == 5){
+        //ft^3 (cubic feet) -> cc (cubic centimeters)
+        output = toconvert; 
+    }
+    else if (unitbefore == 8 && unitafter == 6){
+        //ft^3 (cubic feet) -> m^3 (cubicmeters)
+        output = toconvert; 
+    }
+    else if (unitbefore == 8 && unitafter == 7){
+        //ft^3 (cubic feet) -> in^3 (cubic inches)
+        output = toconvert; 
     }
     else{
         //default case
