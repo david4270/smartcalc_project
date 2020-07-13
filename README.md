@@ -24,7 +24,7 @@ Jul 11, 2020 - Conversion calculator progress
 - Temperature conversion - complete
 - Data conversion - complete
 - Speed conversion - not started
-- Time conversion - WIP
+- Time conversion - complete
 - Volume conversion - complete
 
 ## Errors

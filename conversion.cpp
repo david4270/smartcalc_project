@@ -44,6 +44,7 @@ const double kbtobyte = 1024;
 
 //time conversion parameters
 const double stoms = 1000;
+const double htom = 60;
 const double dtoh = 24;
 const double wktod = 7;
 const double yrtod = 365; //not always though...
@@ -1679,8 +1680,172 @@ double timeConversion(int unitbefore, int unitafter, double toconvert){
         output = toconvert;
     }
     else if (unitbefore == 1 && unitafter == 2){
-        //standard ton -> US ton
-        output = toconvert; 
+        //ms -> s
+        output = toconvert/stoms; 
+    }
+    else if (unitbefore == 1 && unitafter == 3){
+        //ms -> m
+        output = toconvert/(stoms*htom); 
+    }
+    else if (unitbefore == 1 && unitafter == 4){
+        //ms -> h
+        output = toconvert/(stoms*htom*htom); 
+    }
+    else if (unitbefore == 1 && unitafter == 5){
+        //ms -> d
+        output = toconvert/(stoms*htom*htom*dtoh); 
+    }
+    else if (unitbefore == 1 && unitafter == 6){
+        //ms -> wk
+        output = toconvert/(stoms*htom*htom*dtoh*wktod); 
+    }
+    else if (unitbefore == 1 && unitafter == 7){
+        //ms -> yr
+        output = toconvert/(stoms*htom*htom*dtoh*yrtod); 
+    }
+    else if (unitbefore == 2 && unitafter == 1){
+        //s -> ms
+        output = toconvert*stoms; 
+    }
+    else if (unitbefore == 2 && unitafter == 3){
+        //s -> m
+        output = toconvert/htom; 
+    }
+    else if (unitbefore == 2 && unitafter == 4){
+        //s -> h
+        output = toconvert/(htom*htom); 
+    }
+    else if (unitbefore == 2 && unitafter == 5){
+        //s -> d
+        output = toconvert/(htom*htom*dtoh); 
+    }
+    else if (unitbefore == 2 && unitafter == 6){
+        //s -> wk
+        output = toconvert/(htom*htom*dtoh*wktod); 
+    }
+    else if (unitbefore == 2 && unitafter == 7){
+        //s -> yr
+        output = toconvert/(htom*htom*dtoh*yrtod);
+    }
+    else if (unitbefore == 3 && unitafter == 1){
+        //m -> ms
+        output = toconvert*htom*stoms; 
+    }
+    else if (unitbefore == 3 && unitafter == 2){
+        //m -> s
+        output = toconvert*htom; 
+    }
+    else if (unitbefore == 3 && unitafter == 4){
+        //m -> h
+        output = toconvert/htom; 
+    }
+    else if (unitbefore == 3 && unitafter == 5){
+        //m -> d
+        output = toconvert/(htom*dtoh); 
+    }
+    else if (unitbefore == 3 && unitafter == 6){
+        //m -> wk
+        output = toconvert/(htom*dtoh*wktod); 
+    }
+    else if (unitbefore == 3 && unitafter == 7){
+        //m -> yr
+        output = toconvert/(htom*dtoh*yrtod); 
+    }
+    else if (unitbefore == 4 && unitafter == 1){
+        //h -> ms
+        output = toconvert*htom*htom*stoms; 
+    }
+    else if (unitbefore == 4 && unitafter == 2){
+        //h -> s 
+        output = toconvert*htom*htom; 
+    }
+    else if (unitbefore == 4 && unitafter == 3){
+        //h -> m
+        output = toconvert*htom; 
+    }
+    else if (unitbefore == 4 && unitafter == 5){
+        //h -> d
+        output = toconvert/dtoh; 
+    }
+    else if (unitbefore == 4 && unitafter == 6){
+        //h -> wk
+        output = toconvert/(dtoh*wktod); 
+    }
+    else if (unitbefore == 4 && unitafter == 7){
+        //h -> yr
+        output = toconvert/(dtoh*yrtod); 
+    }
+    else if (unitbefore == 5 && unitafter == 1){
+        //d -> ms
+        output = toconvert*dtoh*htom*htom*stoms; 
+    }
+    else if (unitbefore == 5 && unitafter == 2){
+        //d -> s
+        output = toconvert*dtoh*htom*htom; 
+    }
+    else if (unitbefore == 5 && unitafter == 3){
+        //d -> m
+        output = toconvert*dtoh*htom; 
+    }
+    else if (unitbefore == 5 && unitafter == 4){
+        //d -> h
+        output = toconvert*dtoh; 
+    }
+    else if (unitbefore == 5 && unitafter == 6){
+        //d -> wk
+        output = toconvert/wktod; 
+    }
+    else if (unitbefore == 5 && unitafter == 7){
+        //d -> yr
+        output = toconvert/yrtod; 
+    }
+    else if (unitbefore == 6 && unitafter == 1){
+        //wk -> ms
+        output = toconvert*wktod*dtoh*htom*htom*stoms; 
+    }
+    else if (unitbefore == 6 && unitafter == 2){
+        //wk ->s
+        output = toconvert*wktod*dtoh*htom*htom; 
+    }
+    else if (unitbefore == 6 && unitafter == 3){
+        //wk -> m
+        output = toconvert*wktod*dtoh*htom; 
+    }
+    else if (unitbefore == 6 && unitafter == 4){
+        //wk -> h
+        output = toconvert*wktod*dtoh; 
+    }
+    else if (unitbefore == 6 && unitafter == 5){
+        //wk -> d
+        output = toconvert*wktod; 
+    }
+    else if (unitbefore == 6 && unitafter == 7){
+        //wk -> yr
+        output = toconvert*wktod/yrtod; 
+    }
+    else if (unitbefore == 7 && unitafter == 1){
+        //yr -> ms
+        output = toconvert*yrtod*dtoh*htom*htom*stoms; 
+    }
+    else if (unitbefore == 7 && unitafter == 2){
+        //yr -> s
+        output = toconvert*yrtod*dtoh*htom*htom; 
+    }
+    else if (unitbefore == 7 && unitafter == 3){
+        //yr -> m
+        output = toconvert*yrtod*dtoh*htom; 
+    }
+    else if (unitbefore == 7 && unitafter == 4){
+        //yr -> h
+        output = toconvert*yrtod*dtoh; 
+    }
+    else if (unitbefore == 7 && unitafter == 5){
+        //yr -> d
+        output = toconvert*yrtod; 
+    }
+    else if (unitbefore == 7 && unitafter == 6){
+        //yr -> wk
+        output = toconvert*yrtod/wktod; 
     }
     else{
         //default case
