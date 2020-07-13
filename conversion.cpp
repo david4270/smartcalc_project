@@ -47,7 +47,13 @@ const double stoms = 1000;
 const double dtoh = 24;
 const double wktod = 7;
 const double yrtod = 365; //not always though...
+
 //volume conversion parameters
+const double LtomL = 1000; //1m^3 = 1000L, 1L = 1000mL
+const double UKgaltoL = 4.54609; //1gal(UK) = 4.54609L
+const double USgaltocubin = 231; //1gal(US) = 231 in^3
+const double cubfttocubin = 1728; //1 ft^3 = 1728 in^3
+const double cubintomL = 16.387064; //1 in^3 = 16.387064 mL
 
 //Conversion calculator
 void conversionCalc(){
@@ -1761,127 +1767,127 @@ double volumeConversion(int unitbefore, int unitafter, double toconvert){
     }
     else if (unitbefore == 1 && unitafter == 2){
         //gal (UK) -> gal (US)
-        output = toconvert; 
+        output = toconvert*UKgaltoL*LtomL/(cubintomL*USgaltocubin); 
     }
     else if (unitbefore == 1 && unitafter == 3){
         //gal (UK) -> L (liters)
-        output = toconvert;  
+        output = toconvert*UKgaltoL;  
     }
     else if (unitbefore == 1 && unitafter == 4){
         //gal (UK) -> mL (milliliters)
-        output = toconvert; 
+        output = toconvert*UKgaltoL*LtomL; 
     }
     else if (unitbefore == 1 && unitafter == 5){
         //gal (UK) -> cc (cubic centimeters)
-        output = toconvert; 
+        output = toconvert*UKgaltoL*LtomL; 
     }
     else if (unitbefore == 1 && unitafter == 6){
         //gal (UK) -> m^3 (cubicmeters)
-        output = toconvert; 
+        output = toconvert*UKgaltoL/LtomL; 
     }
     else if (unitbefore == 1 && unitafter == 7){
         //gal (UK) -> in^3 (cubic inches)
-        output = toconvert;  
+        output = toconvert*UKgaltoL*LtomL/cubintomL;  
     }
     else if (unitbefore == 1 && unitafter == 8){
         //gal (UK) -> ft^3 (cubic feet)
-        output = toconvert; 
+        output = toconvert*UKgaltoL*LtomL/(cubintomL*cubfttocubin); 
     }
     else if (unitbefore == 2 && unitafter == 1){
         //gal (US) -> gal (UK)
-        output = toconvert; 
+        output = toconvert*cubintomL*USgaltocubin/(UKgaltoL*LtomL); 
     }
     else if (unitbefore == 2 && unitafter == 3){
         //gal (US) -> L (liters)
-        output = toconvert; 
+        output = toconvert*cubintomL*USgaltocubin/(LtomL); 
     }
     else if (unitbefore == 2 && unitafter == 4){
         //gal (US) -> mL (milliliters)
-        output = toconvert; 
+        output = toconvert*cubintomL*USgaltocubin; 
     }
     else if (unitbefore == 2 && unitafter == 5){
         //gal (US) -> cc (cubic centimeters)
-        output = toconvert; 
+        output = toconvert*cubintomL*USgaltocubin; 
     }
     else if (unitbefore == 2 && unitafter == 6){
         //gal (US) -> m^3 (cubicmeters)
-        output = toconvert; 
+        output = toconvert*cubintomL*USgaltocubin/(LtomL*LtomL); 
     }
     else if (unitbefore == 2 && unitafter == 7){
         //gal (US) -> in^3 (cubic inches)
-        output = toconvert; 
+        output = toconvert*USgaltocubin; 
     }
     else if (unitbefore == 2 && unitafter == 8){
         //gal (US) -> ft^3 (cubic feet)
-        output = toconvert; 
+        output = toconvert*USgaltocubin/cubfttocubin; 
     }
     else if (unitbefore == 3 && unitafter == 1){
         //L (liters) -> gal (UK)
-        output = toconvert; 
+        output = toconvert/UKgaltoL; 
     }
     else if (unitbefore == 3 && unitafter == 2){
         //L (liters) -> gal (US)
-        output = toconvert; 
+        output = toconvert*LtomL/(cubintomL*USgaltocubin); 
     }
     else if (unitbefore == 3 && unitafter == 4){
         //L (liters) -> mL (milliliters)
-        output = toconvert;
+        output = toconvert*LtomL;
     }
     else if (unitbefore == 3 && unitafter == 5){
         //L (liters) -> cc (cubic centimeters)
-        output = toconvert;
+        output = toconvert*LtomL;
     }
     else if (unitbefore == 3 && unitafter == 6){
         //L (liters) -> m^3 (cubicmeters)
-        output = toconvert;
+        output = toconvert/LtomL;
     }
     else if (unitbefore == 3 && unitafter == 7){
         //L (liters) -> in^3 (cubic inches)
-        output = toconvert;
+        output = toconvert*LtomL/cubintomL;
     }
     else if (unitbefore == 3 && unitafter == 8){
         //L (liters) -> ft^3 (cubic feet)
-        output = toconvert;
+        output = toconvert*LtomL/(cubfttocubin*cubintomL);
     }
      else if (unitbefore == 4 && unitafter == 1){
         //mL (milliliters) -> gal (UK)
-        output = toconvert; 
+        output = toconvert/(LtomL*UKgaltoL); 
     }
     else if (unitbefore == 4 && unitafter == 2){
         //mL (milliliters) -> gal (US)
-        output = toconvert; 
+        output = toconvert/(cubintomL*USgaltocubin); 
     }
     else if (unitbefore == 4 && unitafter == 3){
         //mL (milliliters) -> L (liters)
-        output = toconvert; 
+        output = toconvert/LtomL; 
     }
     else if (unitbefore == 4 && unitafter == 5){
-        //mL (milliliters) -> cc (cubic centimeters)
+        //mL (milliliters) -> cc (cubic centimeters), same thing!
         output = toconvert; 
     }
     else if (unitbefore == 4 && unitafter == 6){
         //mL (milliliters) -> m^3 (cubicmeters)
-        output = toconvert; 
+        output = toconvert/(LtomL*LtomL); 
     }
     else if (unitbefore == 4 && unitafter == 7){
         //mL (milliliters) -> in^3 (cubic inches)
-        output = toconvert; 
+        output = toconvert/cubintomL; 
     }
     else if (unitbefore == 4 && unitafter == 8){
         //mL (milliliters) -> ft^3 (cubic feet)
-        output = toconvert; 
+        output = toconvert/(cubfttocubin*cubintomL); 
     }
     else if (unitbefore == 5 && unitafter == 1){
         //cc (cubic centimeters) -> gal (UK)
-        output = toconvert; 
+        output = toconvert/(LtomL*UKgaltoL); 
     }
     else if (unitbefore == 5 && unitafter == 2){
         //cc (cubic centimeters) -> gal (US)
-        output = toconvert; 
+        output = toconvert/(cubintomL*USgaltocubin); 
     }
     else if (unitbefore == 5 && unitafter == 3){
         //cc (cubic centimeters) -> L (liters)
-        output = toconvert; 
+        output = toconvert/LtomL; 
     }
     else if (unitbefore == 5 && unitafter == 4){
         //cc (cubic centimeters) -> mL (milliliters)
@@ -1889,99 +1895,99 @@ double volumeConversion(int unitbefore, int unitafter, double toconvert){
     }
     else if (unitbefore == 5 && unitafter == 6){
         //cc (cubic centimeters) -> m^3 (cubicmeters)
-        output = toconvert; 
+        output = toconvert/(LtomL*LtomL); 
     }
     else if (unitbefore == 5 && unitafter == 7){
         //cc (cubic centimeters) -> in^3 (cubic inches)
-        output = toconvert; 
+        output = toconvert/cubintomL; 
     }
     else if (unitbefore == 5 && unitafter == 8){
         //cc (cubic centimeters) -> ft^3 (cubic feet)
-        output = toconvert; 
+        output = toconvert/(cubfttocubin*cubintomL); 
     }
      else if (unitbefore == 6 && unitafter == 1){
         //m^3 (cubicmeters) -> gal (UK)
-        output = toconvert; 
+        output = toconvert*LtomL/UKgaltoL; 
     }
     else if (unitbefore == 6 && unitafter == 2){
         //m^3 (cubicmeters) -> gal (US)
-        output = toconvert; 
+        output = toconvert*LtomL*LtomL/(cubintomL*USgaltocubin); 
     }
     else if (unitbefore == 6 && unitafter == 3){
         //m^3 (cubicmeters) -> L (liters)
-        output = toconvert; 
+        output = toconvert*LtomL; 
     }
     else if (unitbefore == 6 && unitafter == 4){
         //m^3 (cubicmeters) -> mL (milliliters)
-        output = toconvert; 
+        output = toconvert*LtomL*LtomL; 
     }
     else if (unitbefore == 6 && unitafter == 5){
         //m^3 (cubicmeters) -> cc (cubic centimeters)
-        output = toconvert; 
+        output = toconvert*LtomL*LtomL; 
     }
     else if (unitbefore == 6 && unitafter == 7){
         //m^3 (cubicmeters) -> in^3 (cubic inches)
-        output = toconvert; 
+        output = toconvert*LtomL*LtomL/cubintomL; 
     }
     else if (unitbefore == 6 && unitafter == 8){
         //m^3 (cubicmeters) -> ft^3 (cubic feet)
-        output = toconvert; 
+        output = toconvert*LtomL*LtomL/(cubfttocubin*cubintomL); 
     }
     else if (unitbefore == 7 && unitafter == 1){
         //in^3 (cubic inches) -> gal (UK)
-        output = toconvert; 
+        output = toconvert*cubintomL/(LtomL*UKgaltoL); 
     }
     else if (unitbefore == 7 && unitafter == 2){
         //in^3 (cubic inches) -> gal (US)
-        output = toconvert; 
+        output = toconvert/USgaltocubin; 
     }
     else if (unitbefore == 7 && unitafter == 3){
         //in^3 (cubic inches) -> L (liters)
-        output = toconvert; 
+        output = toconvert*cubintomL/(LtomL); 
     }
     else if (unitbefore == 7 && unitafter == 4){
         //in^3 (cubic inches) -> mL (milliliters)
-        output = toconvert; 
+        output = toconvert*cubintomL; 
     }
     else if (unitbefore == 7 && unitafter == 5){
         //in^3 (cubic inches) -> cc (cubic centimeters)
-        output = toconvert; 
+        output = toconvert*cubintomL; 
     }
     else if (unitbefore == 7 && unitafter == 6){
         //in^3 (cubic inches) -> m^3 (cubicmeters)
-        output = toconvert; 
+        output = toconvert*cubintomL/(LtomL*LtomL); 
     }
     else if (unitbefore == 7 && unitafter == 8){
         //in^3 (cubic inches) -> ft^3 (cubic feet)
-        output = toconvert; 
+        output = toconvert/cubfttocubin; 
     }
      else if (unitbefore == 8 && unitafter == 1){
         //ft^3 (cubic feet) -> gal (UK)
-        output = toconvert; 
+        output = toconvert*cubfttocubin*cubintomL/(LtomL*UKgaltoL); 
     }
     else if (unitbefore == 8 && unitafter == 2){
         //ft^3 (cubic feet) -> gal (US)
-        output = toconvert; 
+        output = toconvert*cubfttocubin/USgaltocubin; 
     }
     else if (unitbefore == 8 && unitafter == 3){
         //ft^3 (cubic feet) -> L (liters)
-        output = toconvert; 
+        output = toconvert*cubfttocubin*cubintomL/LtomL; 
     }
     else if (unitbefore == 8 && unitafter == 4){
         //ft^3 (cubic feet) -> mL (milliliters)
-        output = toconvert;
+        output = toconvert*cubfttocubin*cubintomL;
     }
     else if (unitbefore == 8 && unitafter == 5){
         //ft^3 (cubic feet) -> cc (cubic centimeters)
-        output = toconvert; 
+        output = toconvert*cubfttocubin*cubintomL; 
     }
     else if (unitbefore == 8 && unitafter == 6){
         //ft^3 (cubic feet) -> m^3 (cubicmeters)
-        output = toconvert; 
+        output = toconvert*cubfttocubin*cubintomL/(LtomL*LtomL); 
     }
     else if (unitbefore == 8 && unitafter == 7){
         //ft^3 (cubic feet) -> in^3 (cubic inches)
-        output = toconvert; 
+        output = toconvert*cubfttocubin; 
     }
     else{
         //default case
