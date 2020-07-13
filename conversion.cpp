@@ -409,16 +409,16 @@ void lengthCalc(){
     bool toEnd = false;
     while (!toEnd){
         cout << "Type corresponding number to make your choice" <<endl;
-        cout << "1. millimeters (mm)" << endl;
-        cout << "2. centimeters (cm)" << endl;
-        cout << "3. meters (m)" << endl;
-        cout << "4. kilometers (km)" << endl;
-        cout << "5. inches (in)" << endl;
-        cout << "6. feet (ft)" << endl;
-        cout << "7. yards (yd)" <<endl;
-        cout << "8. miles (mi)" <<endl;
-        cout << "9. nautical miles (nm)" <<endl;
-        cout << "10. mils (mil)" <<endl;
+        cout << "1. mm (millimeters)" << endl;
+        cout << "2. cm (centimeters)" << endl;
+        cout << "3. m (meters)" << endl;
+        cout << "4. km (kilometers)" << endl;
+        cout << "5. in (inches)" << endl;
+        cout << "6. ft (feet)" << endl;
+        cout << "7. yd (yards)" <<endl;
+        cout << "8. mi (miles)" <<endl;
+        cout << "9. nm (nautical miles)" <<endl;
+        cout << "10. mil (mils)" <<endl;
         cout << "0. exit" <<endl;
 
         cout << "Which unit do you want to convert from?" << endl;
@@ -453,16 +453,16 @@ string numtoLengthunit(int input, bool & toEnd){
             output = "";
             toEnd = true;
             break;
-        case 1: output = "millimeters (mm)"; break;
-        case 2: output = "centimeters (cm)"; break;
-        case 3: output = "meters (m)"; break;
-        case 4: output = "kilometers (km)"; break;
-        case 5: output = "inches (in)"; break;
-        case 6: output = "feet (ft)"; break;
-        case 7: output = "yards (yd)"; break;
-        case 8: output = "miles (mi)"; break;
-        case 9: output = "nautical miles (nm)"; break;
-        case 10: output = "mils (mil)"; break;
+        case 1: output = "mm (millimeters)"; break;
+        case 2: output = "cm (centimeters)"; break;
+        case 3: output = "m (meters)"; break;
+        case 4: output = "km (kilometers)"; break;
+        case 5: output = "in (inches)"; break;
+        case 6: output = "ft (feet)"; break;
+        case 7: output = "yd (yards)"; break;
+        case 8: output = "mi (miles)"; break;
+        case 9: output = "nm (nautical miles)"; break;
+        case 10: output = "mil (mils)"; break;
         default:
             cout << "Invalid input!" <<endl;
             output = "";
@@ -861,17 +861,17 @@ void areaCalc(){
     bool toEnd = false;
     while (!toEnd){
         cout << "Type corresponding number to make your choice" <<endl;
-        cout << "1. acres (ac)" << endl;
-        cout << "2. ares (a)" << endl;
-        cout << "3. hectares (ha)" << endl;
-        cout << "4. square millimeters (mm^2)" << endl;
-        cout << "5. square centimeters (cm^2)" << endl;
-        cout << "6. square meters (m^2)" << endl;
-        cout << "7. square kilometers (km^2)" <<endl;
-        cout << "8. square inches (in^2)" <<endl;
-        cout << "9. square feet (ft^2)" <<endl;
-        cout << "10. square yards (yd^2)" <<endl;
-        cout << "11. square miles (mi^2)" <<endl;
+        cout << "1. ac (acres)" << endl;
+        cout << "2. a (ares)" << endl;
+        cout << "3. ha (hectares)" << endl;
+        cout << "4. mm^2 (square millimeters)" << endl;
+        cout << "5. cm^2 (square centimeters)" << endl;
+        cout << "6. m^2 (square meters)" << endl;
+        cout << "7. km^2 (square kilometers)" <<endl;
+        cout << "8. in^2 (square inches)" <<endl;
+        cout << "9. ft^2 (square feet)" <<endl;
+        cout << "10. yd^2 (square yards)" <<endl;
+        cout << "11. mi^2 (square miles)" <<endl;
         cout << "0. exit" <<endl;
 
         cout << "Which unit do you want to convert from?" << endl;
@@ -906,17 +906,17 @@ string numtoAreaunit(int input, bool & toEnd){
             output = "";
             toEnd = true;
             break;
-        case 1: output = "acres (ac)"; break;
-        case 2: output = "ares (a)"; break;
-        case 3: output = "hectares (ha)"; break;
-        case 4: output = "square millimeters (mm^2)"; break;
-        case 5: output = "square centimeters (cm^2)"; break;
-        case 6: output = "square meters (m^2)"; break;
-        case 7: output = "square kilometers (km^2)"; break;
-        case 8: output = "square inches (in^2)"; break;
-        case 9: output = "square feet (ft^2)"; break;
-        case 10: output = "square yards (yd^2)"; break;
-        case 11: output = "square miles (mi^2)"; break;
+        case 1: output = "ac (acres)"; break;
+        case 2: output = "a (ares)"; break;
+        case 3: output = "ha (hectares)"; break;
+        case 4: output = "mm^2 (square millimeters)"; break;
+        case 5: output = "cm^2 (square centimeters)"; break;
+        case 6: output = "m^2 (square meters)"; break;
+        case 7: output = "km^2 (square kilometers)"; break;
+        case 8: output = "in^2 (square inches)"; break;
+        case 9: output = "ft^2 (square feet)"; break;
+        case 10: output = "yd^2 (square yards)"; break;
+        case 11: output = "mi^2 (square miles)"; break;
         default:
             cout << "Invalid input!" <<endl;
             output = "";
@@ -937,39 +937,39 @@ double areaConversion(int unitbefore, int unitafter, double toconvert){
     }
     else if (unitbefore == 1 && unitafter == 3){
         //acre -> hectare
-        output = toconvert; 
+        output = toconvert*acretosqft*sqfttosqin*sqintosqcm/(sqmtosqcm*hectaretosqm); 
     }
     else if (unitbefore == 1 && unitafter == 4){
         //acre -> sqmm
-        output = toconvert; 
+        output = toconvert*acretosqft*sqfttosqin*sqintosqcm*sqcmtosqmm; 
     }
     else if (unitbefore == 1 && unitafter == 5){
         //acre -> sqcm
-        output = toconvert; 
+        output = toconvert*acretosqft*sqfttosqin*sqintosqcm; 
     }
     else if (unitbefore == 1 && unitafter == 6){
         //acre -> sqm
-        output = toconvert; 
+        output = toconvert*acretosqft*sqfttosqin*sqintosqcm/(sqmtosqcm); 
     }
     else if (unitbefore == 1 && unitafter == 7){
         //acre -> sqkm
-        output = toconvert; 
+        output = toconvert*acretosqft*sqfttosqin*sqintosqcm/(sqmtosqcm*sqkmtosqm); 
     }
     else if (unitbefore == 1 && unitafter == 8){
         //acre -> sqin
-        output = toconvert; 
+        output = toconvert*acretosqft*sqfttosqin; 
     }
     else if (unitbefore == 1 && unitafter == 9){
         //acre -> sqft
-        output = toconvert; 
+        output = toconvert*acretosqft; 
     }
     else if (unitbefore == 1 && unitafter == 10){
         //acre ->sqyd
-        output = toconvert; 
+        output = toconvert*acretosqft/sqydtosqft; 
     }
     else if (unitbefore == 1 && unitafter == 11){
         //acre -> sqmi
-        output = toconvert; 
+        output = toconvert*acretosqft/(sqydtosqft*sqmiletosqyd); 
     }
     else if (unitbefore == 2 && unitafter == 1){
         //are -> acre
@@ -977,39 +977,39 @@ double areaConversion(int unitbefore, int unitafter, double toconvert){
     }
     else if (unitbefore == 2 && unitafter == 3){
         //are -> hectare
-        output = toconvert; 
+        output =toconvert/hectaretoare; 
     }
     else if (unitbefore == 2 && unitafter == 4){
         //are -> sqmm
-        output = toconvert; 
+        output = toconvert*(sqmtosqcm*hectaretosqm*sqcmtosqmm)/(hectaretoare); 
     }
     else if (unitbefore == 2 && unitafter == 5){
         //are -> sqcm
-        output = toconvert; 
+        output = toconvert*(sqmtosqcm*hectaretosqm)/(hectaretoare); 
     }
     else if (unitbefore == 2 && unitafter == 6){
         //are -> sqm
-        output = toconvert; 
+        output = toconvert*(hectaretosqm)/(hectaretoare); 
     }
     else if (unitbefore == 2 && unitafter == 7){
         //are -> sqkm
-        output = toconvert; 
+        output = toconvert*(hectaretosqm)/(hectaretoare*sqkmtosqm); 
     }
     else if (unitbefore == 2 && unitafter == 8){
         //are -> sqin
-        output = toconvert; 
+        output = toconvert*(sqmtosqcm*hectaretosqm)/(sqintosqcm*hectaretoare); 
     }
     else if (unitbefore == 2 && unitafter == 9){
         //are -> sqft
-        output = toconvert; 
+        output = toconvert*(sqmtosqcm*hectaretosqm)/(sqfttosqin*sqintosqcm*hectaretoare); 
     }
     else if (unitbefore == 2 && unitafter == 10){
         //are ->sqyd
-        output = toconvert; 
+        output = toconvert*(sqmtosqcm*hectaretosqm)/(sqydtosqft*sqfttosqin*sqintosqcm*hectaretoare); 
     }
     else if (unitbefore == 2 && unitafter == 11){
         //are -> sqmi
-        output = toconvert; 
+        output = toconvert*(sqmtosqcm*hectaretosqm)/(sqmiletosqyd*sqydtosqft*sqfttosqin*sqintosqcm*hectaretoare); 
     }
     else if (unitbefore == 3 && unitafter == 1){
         //hectare -> acre
@@ -1390,9 +1390,9 @@ void temperatureCalc(){
     bool toEnd = false;
     while (!toEnd){
         cout << "Type corresponding number to make your choice" <<endl;
-        cout << "1. celsius (C)" << endl;
-        cout << "2. kelvin (K)" << endl;
-        cout << "3. fahrenheit (F)" << endl;
+        cout << "1. °C (celsius)" << endl;
+        cout << "2. K (kelvin)" << endl;
+        cout << "3. °F (fahrenheit)" << endl;
         cout << "0. exit" <<endl;
 
         cout << "Which unit do you want to convert from?" << endl;
@@ -1428,9 +1428,9 @@ string numtoTemperatureunit(int input, bool & toEnd){
             output = "";
             toEnd = true;
             break;
-        case 1: output = "celsius (C)"; break;
-        case 2: output = "kelvin (K)"; break;
-        case 3: output = "fahrenheit (F)"; break;
+        case 1: output = "°C (celsius)"; break;
+        case 2: output = "K (kelvin)"; break;
+        case 3: output = "°F (fahrenheit)"; break;
         default:
             cout << "Invalid input!" <<endl;
             output = "";
@@ -1490,12 +1490,12 @@ void dataCalc(){
         cout << "Type corresponding number to make your choice" <<endl;
         cout << "1. bit" << endl;
         cout << "2. byte" << endl;
-        cout << "3. kilobyte (KiB)" << endl;
-        cout << "4. megabyte (MiB)" << endl;
-        cout << "5. gigabyte (GiB)" << endl;
-        cout << "6. terabyte (TiB)" << endl;
-        cout << "7. petabyte (PiB)" << endl;
-        cout << "8. exabyte (EiB)" << endl;
+        cout << "3. KiB (kilobyte)" << endl;
+        cout << "4. MiB (megabyte)" << endl;
+        cout << "5. GiB (gigabyte)" << endl;
+        cout << "6. TiB (terabyte)" << endl;
+        cout << "7. PiB (petabyte)" << endl;
+        cout << "8. EiB (exabyte)" << endl;
         cout << "0. exit" <<endl;
 
         cout << "Which unit do you want to convert from?" << endl;
@@ -1532,12 +1532,12 @@ string numtoDataunit(int input, bool & toEnd){
             break;
         case 1: output = "bit"; break;
         case 2: output = "byte"; break;
-        case 3: output = "kilobyte (KiB)"; break;
-        case 4: output = "megabyte (MiB)"; break;
-        case 5: output = "gigabyte (GiB)"; break;
-        case 6: output = "terabyte (TiB)"; break;
-        case 7: output = "petabyte (PiB)"; break;
-        case 8: output = "exabyte (EiB)"; break;
+        case 3: output = "KiB (kilobyte)"; break;
+        case 4: output = "MiB (megabyte)"; break;
+        case 5: output = "GiB (gigabyte)"; break;
+        case 6: output = "TiB (terabyte)"; break;
+        case 7: output = "PiB (petabyte)"; break;
+        case 8: output = "EiB (exabyte)"; break;
         default:
             cout << "Invalid input!" <<endl;
             output = "";
