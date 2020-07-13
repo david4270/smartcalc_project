@@ -20,7 +20,7 @@ Jul 11, 2020 - Conversion calculator progress
 - Mass conversion - complete
 - Length conversion - complete
 - Currency conversion - not started
-- Area conversion - WIP
+- Area conversion - complete
 - Temperature conversion - complete
 - Data conversion - complete
 - Speed conversion - not started

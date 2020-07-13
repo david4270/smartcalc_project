@@ -1013,363 +1013,363 @@ double areaConversion(int unitbefore, int unitafter, double toconvert){
     }
     else if (unitbefore == 3 && unitafter == 1){
         //hectare -> acre
-        output = toconvert; 
+        output = toconvert*hectaretosqm*sqmtosqcm/(sqintosqcm*sqfttosqin*acretosqft); 
     }
     else if (unitbefore == 3 && unitafter == 2){
         //hectare -> are
-        output = toconvert; 
+        output = toconvert*hectaretoare; 
     }
     else if (unitbefore == 3 && unitafter == 4){
         //hectare -> sqmm
-        output = toconvert; 
+        output = toconvert*hectaretosqm*sqmtosqcm*sqcmtosqmm; 
     }
     else if (unitbefore == 3 && unitafter == 5){
         //hectare -> sqcm
-        output = toconvert; 
+        output = toconvert*hectaretosqm*sqmtosqcm; 
     }
     else if (unitbefore == 3 && unitafter == 6){
         //hectare -> sqm
-        output = toconvert; 
+        output = toconvert*hectaretosqm; 
     }
     else if (unitbefore == 3 && unitafter == 7){
         //hectare -> sqkm
-        output = toconvert; 
+        output = toconvert*hectaretosqm/sqkmtosqm; 
     }
     else if (unitbefore == 3 && unitafter == 8){
         //hectare -> sqin
-        output = toconvert; 
+        output = toconvert*hectaretosqm*sqmtosqcm/sqintosqcm; 
     }
     else if (unitbefore == 3 && unitafter == 9){
         //hectare -> sqft
-        output = toconvert; 
+        output = toconvert*hectaretosqm*sqmtosqcm/(sqintosqcm*sqfttosqin); 
     }
     else if (unitbefore == 3 && unitafter == 10){
         //hectare ->sqyd
-        output = toconvert; 
+        output = toconvert*hectaretosqm*sqmtosqcm/(sqintosqcm*sqfttosqin*sqydtosqft); 
     }
     else if (unitbefore == 3 && unitafter == 11){
         //hectare -> sqmi
-        output = toconvert; 
+        output = toconvert*hectaretosqm*sqmtosqcm/(sqintosqcm*sqfttosqin*sqydtosqft*sqmiletosqyd); 
     }
     else if (unitbefore == 4 && unitafter == 1){
         //sqmm -> acre
-        output = toconvert; 
+        output = toconvert/(sqcmtosqmm*sqintosqcm*sqfttosqin*acretosqft); 
     }
     else if (unitbefore == 4 && unitafter == 2){
         //sqmm -> are
-        output = toconvert; 
+        output = toconvert*hectaretoare/(sqcmtosqmm*sqmtosqcm*hectaretosqm); 
     }
     else if (unitbefore == 4 && unitafter == 3){
         //sqmm -> hectare
-        output = toconvert; 
+        output = toconvert/(sqcmtosqmm*sqmtosqcm*hectaretosqm); 
     }
     else if (unitbefore == 4 && unitafter == 5){
         //sqmm -> sqcm
-        output = toconvert; 
+        output = toconvert/sqcmtosqmm; 
     }
     else if (unitbefore == 4 && unitafter == 6){
         //sqmm -> sqm
-        output = toconvert; 
+        output = toconvert/(sqcmtosqmm*sqmtosqcm); 
     }
     else if (unitbefore == 4 && unitafter == 7){
         //sqmm -> sqkm
-        output = toconvert; 
+        output = toconvert/(sqcmtosqmm*sqmtosqcm*sqkmtosqm); 
     }
     else if (unitbefore == 4 && unitafter == 8){
         //sqmm -> sqin
-        output = toconvert; 
+        output = toconvert/(sqcmtosqmm*sqintosqcm); 
     }
     else if (unitbefore == 4 && unitafter == 9){
         //sqmm -> sqft
-        output = toconvert; 
+        output = toconvert/(sqcmtosqmm*sqintosqcm*sqfttosqin); 
     }
     else if (unitbefore == 4 && unitafter == 10){
         //sqmm ->sqyd
-        output = toconvert; 
+        output = toconvert/(sqcmtosqmm*sqintosqcm*sqfttosqin*sqydtosqft); 
     }
     else if (unitbefore == 4 && unitafter == 11){
         //sqmm -> sqmi
-        output = toconvert; 
+        output = toconvert/(sqcmtosqmm*sqintosqcm*sqfttosqin*sqydtosqft*sqmiletosqyd); 
     }
     else if (unitbefore == 5 && unitafter == 1){
         //sqcm -> acre
-        output = toconvert; 
+        output = toconvert/(sqintosqcm*sqfttosqin*acretosqft); 
     }
     else if (unitbefore == 5 && unitafter == 2){
         //sqcm -> are
-        output = toconvert; 
+        output = toconvert*hectaretoare/(sqmtosqcm*hectaretosqm); 
     }
     else if (unitbefore == 5 && unitafter == 3){
         //sqcm -> hectare
-        output = toconvert; 
+        output = toconvert/(sqmtosqcm*hectaretosqm); 
     }
     else if (unitbefore == 5 && unitafter == 4){
         //sqcm -> sqmm
-        output = toconvert; 
+        output = toconvert*sqcmtosqmm; 
     }
     else if (unitbefore == 5 && unitafter == 6){
         //sqcm -> sqm
-        output = toconvert; 
+        output = toconvert/(sqmtosqcm); 
     }
     else if (unitbefore == 5 && unitafter == 7){
         //sqcm -> sqkm
-        output = toconvert; 
+        output = toconvert/(sqmtosqcm*sqkmtosqm); 
     }
     else if (unitbefore == 5 && unitafter == 8){
         //sqcm -> sqin
-        output = toconvert; 
+        output = toconvert/(sqintosqcm); 
     }
     else if (unitbefore == 5 && unitafter == 9){
         //sqcm -> sqft
-        output = toconvert; 
+        output = toconvert/(sqintosqcm*sqfttosqin); 
     }
     else if (unitbefore == 5 && unitafter == 10){
         //sqcm ->sqyd
-        output = toconvert; 
+        output = toconvert/(sqintosqcm*sqfttosqin*sqydtosqft); 
     }
     else if (unitbefore == 5 && unitafter == 11){
         //sqcm -> sqmi
-        output = toconvert; 
+        output = toconvert/(sqintosqcm*sqfttosqin*sqydtosqft*sqmiletosqyd); 
     }
     else if (unitbefore == 6 && unitafter == 1){
         //sqm -> acre
-        output = toconvert; 
+        output = toconvert*sqmtosqcm/(sqintosqcm*sqfttosqin*acretosqft); 
     }
     else if (unitbefore == 6 && unitafter == 2){
         //sqm -> are
-        output = toconvert; 
+        output = toconvert*hectaretoare/hectaretosqm; 
     }
     else if (unitbefore == 6 && unitafter == 3){
         //sqm -> hectare
-        output = toconvert; 
+        output = toconvert/hectaretosqm; 
     }
     else if (unitbefore == 6 && unitafter == 4){
         //sqm -> sqmm
-        output = toconvert; 
+        output = toconvert*sqmtosqcm*sqcmtosqmm; 
     }
     else if (unitbefore == 6 && unitafter == 5){
         //sqm -> sqcm
-        output = toconvert; 
+        output = toconvert*sqmtosqcm; 
     }
     else if (unitbefore == 6 && unitafter == 7){
         //sqm -> sqkm
-        output = toconvert; 
+        output = toconvert/sqkmtosqm; 
     }
     else if (unitbefore == 6 && unitafter == 8){
         //sqm -> sqin
-        output = toconvert; 
+        output = toconvert*sqmtosqcm/sqintosqcm; 
     }
     else if (unitbefore == 6 && unitafter == 9){
         //sqm -> sqft
-        output = toconvert; 
+        output = toconvert*sqmtosqcm/(sqintosqcm*sqfttosqin); 
     }
     else if (unitbefore == 6 && unitafter == 10){
         //sqm ->sqyd
-        output = toconvert; 
+        output = toconvert*sqmtosqcm/(sqintosqcm*sqfttosqin*sqydtosqft); 
     }
     else if (unitbefore == 6 && unitafter == 11){
         //sqm -> sqmi
-        output = toconvert; 
+        output = toconvert*sqmtosqcm/(sqintosqcm*sqfttosqin*sqydtosqft*sqmiletosqyd); 
     }
     else if (unitbefore == 7 && unitafter == 1){
         //sqkm -> acre
-        output = toconvert; 
+        output = toconvert*sqkmtosqm*sqmtosqcm/(sqintosqcm*acretosqft*sqfttosqin); 
     }
     else if (unitbefore == 7 && unitafter == 2){
         //sqkm -> are
-        output = toconvert; 
+        output = toconvert*sqkmtosqm*hectaretoare/(hectaretosqm); 
     }
     else if (unitbefore == 7 && unitafter == 3){
         //sqkm -> hectare
-        output = toconvert; 
+        output = toconvert*sqkmtosqm/hectaretosqm; 
     }
     else if (unitbefore == 7 && unitafter == 4){
         //sqkm -> sqmm
-        output = toconvert; 
+        output = toconvert*sqkmtosqm*sqmtosqcm*sqcmtosqmm; 
     }
     else if (unitbefore == 7 && unitafter == 5){
         //sqkm -> sqcm
-        output = toconvert; 
+        output = toconvert*sqkmtosqm*sqmtosqcm; 
     }
     else if (unitbefore == 7 && unitafter == 6){
         //sqkm -> sqm
-        output = toconvert; 
+        output = toconvert*sqkmtosqm; 
     }
     else if (unitbefore == 7 && unitafter == 8){
         //sqkm -> sqin
-        output = toconvert; 
+        output = toconvert*sqkmtosqm*sqmtosqcm/sqintosqcm; 
     }
     else if (unitbefore == 7 && unitafter == 9){
         //sqkm -> sqft
-        output = toconvert; 
+        output = toconvert*sqkmtosqm*sqmtosqcm/(sqintosqcm*sqfttosqin); 
     }
     else if (unitbefore == 7 && unitafter == 10){
         //sqkm ->sqyd
-        output = toconvert; 
+        output = toconvert*sqkmtosqm*sqmtosqcm/(sqintosqcm*sqydtosqft*sqfttosqin); 
     }
     else if (unitbefore == 7 && unitafter == 11){
         //sqkm -> sqmi
-        output = toconvert; 
+        output = toconvert*sqkmtosqm*sqmtosqcm/(sqintosqcm*sqmiletosqyd*sqydtosqft*sqfttosqin); 
     }
     else if (unitbefore == 8 && unitafter == 1){
         //sqin -> acre
-        output = toconvert; 
+        output = toconvert/(acretosqft*sqfttosqin); 
     }
     else if (unitbefore == 8 && unitafter == 2){
         //sqin -> are
-        output = toconvert; 
+        output = toconvert*sqintosqcm*hectaretoare/(sqmtosqcm*hectaretosqm); 
     }
     else if (unitbefore == 8 && unitafter == 3){
         //sqin -> hectare
-        output = toconvert; 
+        output = toconvert*sqintosqcm/(sqmtosqcm*hectaretosqm); 
     }
     else if (unitbefore == 8 && unitafter == 4){
         //sqin -> sqmm
-        output = toconvert; 
+        output = toconvert*sqintosqcm*sqcmtosqmm; 
     }
     else if (unitbefore == 8 && unitafter == 5){
         //sqin -> sqcm
-        output = toconvert; 
+        output = toconvert*sqintosqcm; 
     }
     else if (unitbefore == 8 && unitafter == 6){
         //sqin -> sqm
-        output = toconvert; 
+        output = toconvert*sqintosqcm/sqmtosqcm; 
     }
     else if (unitbefore == 8 && unitafter == 7){
         //sqin -> sqkm
-        output = toconvert; 
+        output = toconvert*sqintosqcm/(sqkmtosqm*sqmtosqcm); 
     }
     else if (unitbefore == 8 && unitafter == 9){
         //sqin -> sqft
-        output = toconvert; 
+        output = toconvert/(sqfttosqin); 
     }
     else if (unitbefore == 8 && unitafter == 10){
         //sqin ->sqyd
-        output = toconvert; 
+        output = toconvert/(sqfttosqin*sqydtosqft); 
     }
     else if (unitbefore == 8 && unitafter == 11){
         //sqin -> sqmi
-        output = toconvert; 
+        output = toconvert/(sqfttosqin*sqydtosqft*sqmiletosqyd); 
     }
     else if (unitbefore == 9 && unitafter == 1){
         //sqft -> acre
-        output = toconvert; 
+        output = toconvert*sqfttosqin/(acretosqft*sqfttosqin); 
     }
     else if (unitbefore == 9 && unitafter == 2){
         //sqft -> are
-        output = toconvert; 
+        output = toconvert*sqfttosqin*sqintosqcm*hectaretoare/(sqmtosqcm*hectaretosqm);
     }
     else if (unitbefore == 9 && unitafter == 3){
         //sqft -> hectare
-        output = toconvert; 
+        output = toconvert*sqfttosqin*sqintosqcm/(sqmtosqcm*hectaretosqm);
     }
     else if (unitbefore == 9 && unitafter == 4){
         //sqft -> sqmm
-        output = toconvert; 
+        output = toconvert*sqfttosqin*sqintosqcm*sqcmtosqmm; 
     }
     else if (unitbefore == 9 && unitafter == 5){
         //sqft -> sqcm
-        output = toconvert; 
+        output = toconvert*sqfttosqin*sqintosqcm; 
     }
     else if (unitbefore == 9 && unitafter == 6){
         //sqft -> sqm
-        output = toconvert; 
+        output = toconvert*sqfttosqin*sqintosqcm/sqmtosqcm; 
     }
     else if (unitbefore == 9 && unitafter == 7){
         //sqft -> sqkm
-        output = toconvert; 
+        output = toconvert*sqfttosqin*sqintosqcm/(sqkmtosqm*sqmtosqcm); 
     }
     else if (unitbefore == 9 && unitafter == 8){
         //sqft -> sqin
-        output = toconvert; 
+        output = toconvert*sqfttosqin; 
     }
     else if (unitbefore == 9 && unitafter == 10){
         //sqft ->sqyd
-        output = toconvert; 
+        output = toconvert/sqydtosqft; 
     }
     else if (unitbefore == 9 && unitafter == 11){
         //sqft -> sqmi
-        output = toconvert; 
+        output = toconvert/(sqmiletosqyd*sqydtosqft); 
     }
     else if (unitbefore == 10 && unitafter == 1){
         //sqyd -> acre
-        output = toconvert; 
+        output = toconvert*sqydtosqft*sqfttosqin/(acretosqft*sqfttosqin); 
     }
     else if (unitbefore == 10 && unitafter == 2){
         //sqyd -> are
-        output = toconvert; 
+        output = toconvert*sqydtosqft*sqfttosqin*sqintosqcm*hectaretoare/(sqmtosqcm*hectaretosqm); 
     }
     else if (unitbefore == 10 && unitafter == 3){
         //sqyd -> hectare
-        output = toconvert; 
+        output = toconvert*sqydtosqft*sqfttosqin*sqintosqcm/(sqmtosqcm*hectaretosqm);
     }
     else if (unitbefore == 10 && unitafter == 4){
         //sqyd -> sqmm
-        output = toconvert; 
+        output = toconvert*sqydtosqft*sqfttosqin*sqintosqcm*sqcmtosqmm;   
     }
     else if (unitbefore == 10 && unitafter == 5){
         //sqyd -> sqcm
-        output = toconvert; 
+        output = toconvert*sqydtosqft*sqfttosqin*sqintosqcm;
     }
     else if (unitbefore == 10 && unitafter == 6){
         //sqyd -> sqm
-        output = toconvert; 
+        output = toconvert*sqydtosqft*sqfttosqin*sqintosqcm/sqmtosqcm; 
     }
     else if (unitbefore == 10 && unitafter == 7){
         //sqyd -> sqkm
-        output = toconvert; 
+        output = toconvert*sqydtosqft*sqfttosqin*sqintosqcm/(sqkmtosqm*sqmtosqcm);
     }
     else if (unitbefore == 10 && unitafter == 8){
         //sqyd -> sqin
-        output = toconvert; 
+        output = toconvert*sqydtosqft*sqfttosqin; 
     }
     else if (unitbefore == 10 && unitafter == 9){
         //sqyd ->sqft
-        output = toconvert; 
+        output = toconvert*sqydtosqft; 
     }
     else if (unitbefore == 10 && unitafter == 11){
         //sqyd -> sqmi
-        output = toconvert; 
+        output = toconvert/sqmiletosqyd; 
     }
     else if (unitbefore == 11 && unitafter == 1){
         //sqmi -> acre
-        output = toconvert; 
+        output = toconvert*sqmiletosqyd*sqydtosqft*sqfttosqin/(acretosqft*sqfttosqin); 
     }
     else if (unitbefore == 11 && unitafter == 2){
         //sqmi -> are
-        output = toconvert; 
+        output = toconvert*sqmiletosqyd*sqydtosqft*sqfttosqin*sqintosqcm*hectaretoare/(sqmtosqcm*hectaretosqm); 
     }
     else if (unitbefore == 11 && unitafter == 3){
         //sqmi -> hectare
-        output = toconvert; 
+        output = toconvert*sqmiletosqyd*sqydtosqft*sqfttosqin*sqintosqcm/(sqmtosqcm*hectaretosqm); 
     }
     else if (unitbefore == 11 && unitafter == 4){
         //sqmi -> sqmm
-        output = toconvert; 
+        output = toconvert*sqmiletosqyd*sqydtosqft*sqfttosqin*sqintosqcm*sqcmtosqmm;  
     }
     else if (unitbefore == 11 && unitafter == 5){
         //sqmi -> sqcm
-        output = toconvert; 
+        output = toconvert*sqmiletosqyd*sqydtosqft*sqfttosqin*sqintosqcm;
     }
     else if (unitbefore == 11 && unitafter == 6){
         //sqmi -> sqm
-        output = toconvert; 
+        output = toconvert*sqmiletosqyd*sqydtosqft*sqfttosqin*sqintosqcm/sqmtosqcm; 
     }
     else if (unitbefore == 11 && unitafter == 7){
         //sqmi -> sqkm
-        output = toconvert; 
+        output = toconvert*sqmiletosqyd*sqydtosqft*sqfttosqin*sqintosqcm/(sqkmtosqm*sqmtosqcm);
     }
     else if (unitbefore == 11 && unitafter == 8){
         //sqmi -> sqin
-        output = toconvert; 
+        output = toconvert*sqmiletosqyd*sqydtosqft*sqfttosqin; 
     }
     else if (unitbefore == 11 && unitafter == 9){
         //sqmi ->sqft
-        output = toconvert; 
+        output = toconvert*sqmiletosqyd*sqydtosqft; 
     }
     else if (unitbefore == 11 && unitafter == 10){
         //sqmi -> sqyd
-        output = toconvert; 
+        output = toconvert*sqmiletosqyd; 
     }
     else{
         //default case
