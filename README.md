@@ -23,7 +23,7 @@ Jul 11, 2020 - Conversion calculator progress
 - Area conversion - complete
 - Temperature conversion - complete
 - Data conversion - complete
-- Speed conversion - not started
+- Speed conversion - complete
 - Time conversion - complete
 - Volume conversion - complete
 

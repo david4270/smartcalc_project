@@ -41,10 +41,12 @@ const double bytetobit = 8;
 const double kbtobyte = 1024;
 
 //speed conversion paramenters
+const double knottokmh = 1.852; //1 knot = 1.852km/h
 
 //time conversion parameters
 const double stoms = 1000;
 const double htom = 60;
+const double htos = 3600;
 const double dtoh = 24;
 const double wktod = 7;
 const double yrtod = 365; //not always though...
@@ -1581,12 +1583,78 @@ double dataConversion(int unitbefore, int unitafter, double toconvert){
 
 //speed conversion
 void speedCalc(){
+    cout << "Speed conversion calculator" <<endl;
+    
+    int beforeChange, afterChange;
+    double toConvert, afterConvert;
+    string unitBeforeChange, unitAfterChange;
+    string statement;
+    bool toEnd = false;
+    while (!toEnd){
+        cout << "Type corresponding number to make your choice" <<endl;
+        cout << "1. m/s" << endl;
+        cout << "2. m/h" << endl;
+        cout << "3. km/s" << endl;
+        cout << "4. km/h" << endl;
+        cout << "5. in/s" << endl;
+        cout << "6. in/h" << endl;
+        cout << "7. ft/s" << endl;
+        cout << "8. ft/h" << endl;
+        cout << "9. mi/s" << endl;
+        cout << "10. mph (mile/hour)" << endl;
+        cout << "11. kn (knot)"<<endl;
+        cout << "0. exit" <<endl;
 
+        cout << "Which unit do you want to convert from?" << endl;
+        cin >> beforeChange;
+        unitBeforeChange = numtoSpeedunit(beforeChange, toEnd);
+        if(toEnd) break;
+        
+        cout << "What is the value to convert in " << unitBeforeChange << endl;
+        cin >> toConvert;
+
+        cout << "Which unit do you want to convert to?" << endl;
+        cin >> afterChange;
+        unitAfterChange = numtoSpeedunit(afterChange, toEnd);
+        if(toEnd) break;
+
+        afterConvert = speedConversion(beforeChange,afterChange,toConvert);
+        if (afterConvert<0){
+            toEnd = true; 
+            break;
+        }   
+        //Enable this if there is a plan to save history with filestream
+        //statement = to_string(toConvert) + " " + unitBeforeChange +" is converted into " + to_string(afterConvert) + " " + unitAfterChange;
+        cout << setprecision(2) << toConvert << " " << unitBeforeChange << " is converted into " << setprecision(2) << afterConvert << " " << unitAfterChange <<endl;
+    }
+    cout << "Returning back to selection menu..." <<endl;
 }
 
 string numtoSpeedunit(int input, bool & toEnd){
-
-}
+    string output;
+    switch (input){
+        case 0:
+            output = "";
+            toEnd = true;
+            break;
+        case 1: output = "m/s"; break;
+        case 2: output = "m/h"; break;
+        case 3: output = "km/s"; break;
+        case 4: output = "km/h"; break;
+        case 5: output = "in/s"; break;
+        case 6: output = "in/h"; break;
+        case 7: output = "ft/s"; break;
+        case 8: output = "ft/h"; break; 
+        case 9: output = "mi/s"; break;
+        case 10: output = "mph (mile/hour)"; break;
+        case 11: output = "kn (knot)"; break;
+        default:
+            cout << "Invalid input!" <<endl;
+            output = "";
+            break;
+    }
+    return output;
+} 
 
 double speedConversion(int unitbefore, int unitafter, double toconvert){
     double output;
@@ -1595,8 +1663,444 @@ double speedConversion(int unitbefore, int unitafter, double toconvert){
         output = toconvert;
     }
     else if (unitbefore == 1 && unitafter == 2){
-        //standard ton -> US ton
-        output = toconvert*(tonStdtoKg*kgtoGram/lbtoGram)/tonUStoLb; 
+        //m/s -> m/h
+        output = toconvert*htos; 
+    }
+    else if (unitbefore == 1 && unitafter == 3){
+        //m/s -> km/s
+        output = toconvert/kmtom; 
+    }
+    else if (unitbefore == 1 && unitafter == 4){
+        //m/s -> km/h
+        output = toconvert*htos/kmtom; 
+    }
+    else if (unitbefore == 1 && unitafter == 5){
+        //m/s -> in/s
+        output = toconvert*mtocm/intocm; 
+    }
+    else if (unitbefore == 1 && unitafter == 6){
+        //m/s -> in/h
+        output = toconvert*mtocm*htos/intocm; 
+    }
+    else if (unitbefore == 1 && unitafter == 7){
+        //m/s -> ft/s
+        output = toconvert*mtocm/(intocm*fttoin); 
+    }
+    else if (unitbefore == 1 && unitafter == 8){
+        //m/s -> ft/h
+        output = toconvert*mtocm*htos/(intocm*fttoin); 
+    }
+    else if (unitbefore == 1 && unitafter == 9){
+        //m/s -> mi/s
+        output = toconvert*mtocm/(intocm*fttoin*miletoyd*ydtoft); 
+    }
+    else if (unitbefore == 1 && unitafter == 10){
+        //m/s -> mph
+        output = toconvert*mtocm*htos/(intocm*fttoin*miletoyd*ydtoft); 
+    }
+    else if (unitbefore == 1 && unitafter == 11){
+        //m/s -> knot
+        output = toconvert*htos/(knottokmh*kmtom); 
+    }
+    else if (unitbefore == 2 && unitafter == 1){
+        //m/h -> m/s
+        output = toconvert/htos; 
+    }
+    else if (unitbefore == 2 && unitafter == 3){
+        //m/h -> km/s
+        output = toconvert/(htos*kmtom); 
+    }
+    else if (unitbefore == 2 && unitafter == 4){
+        //m/h -> km/h
+        output = toconvert/kmtom; 
+    }
+    else if (unitbefore == 2 && unitafter == 5){
+        //m/h -> in/s
+        output = toconvert*mtocm/(intocm*htos); 
+    }
+    else if (unitbefore == 2 && unitafter == 6){
+        //m/h -> in/h
+        output = toconvert*mtocm/intocm; 
+    }
+    else if (unitbefore == 2 && unitafter == 7){
+        //m/h -> ft/s
+        output = toconvert*mtocm/(intocm*fttoin*htos); 
+    }
+    else if (unitbefore == 2 && unitafter == 8){
+        //m/h -> ft/h
+        output = toconvert*mtocm/(intocm*fttoin); 
+    }
+    else if (unitbefore == 2 && unitafter == 9){
+        //m/h -> mi/s
+        output = toconvert*mtocm/(intocm*fttoin*ydtoft*miletoyd*htos); 
+    }
+    else if (unitbefore == 2 && unitafter == 10){
+        //m/h -> mph
+        output = toconvert*mtocm/(intocm*fttoin*ydtoft*miletoyd); 
+    }
+    else if (unitbefore == 2 && unitafter == 11){
+        //m/h -> knot
+        output = toconvert/(knottokmh*kmtom); 
+    }
+    else if (unitbefore == 3 && unitafter == 1){
+        //km/s -> m/s
+        output = toconvert*kmtom; 
+    }
+    else if (unitbefore == 3 && unitafter == 2){
+        //km/s -> m/h
+        output = toconvert*kmtom*htos; 
+    }
+    else if (unitbefore == 3 && unitafter == 4){
+        //km/s -> km/h
+        output = toconvert*htos; 
+    }
+    else if (unitbefore == 3 && unitafter == 5){
+        //km/s -> in/s
+        output = toconvert*kmtom*mtocm/intocm; 
+    }
+    else if (unitbefore == 3 && unitafter == 6){
+        //km/s -> in/h
+        output = toconvert*kmtom*mtocm*htos/intocm; 
+    }
+    else if (unitbefore == 3 && unitafter == 7){
+        //km/s -> ft/s
+        output = toconvert*kmtom*mtocm/(intocm*fttoin); 
+    }
+    else if (unitbefore == 3 && unitafter == 8){
+        //km/s -> ft/h
+        output = toconvert*kmtom*mtocm*htos/(intocm*fttoin); 
+    }
+    else if (unitbefore == 3 && unitafter == 9){
+        //km/s -> mi/s
+        output = toconvert*kmtom*mtocm/(intocm*fttoin*ydtoft*miletoyd); 
+    }
+    else if (unitbefore == 3 && unitafter == 10){
+        //km/s -> mph
+        output = toconvert*kmtom*mtocm*htos/(intocm*fttoin*ydtoft*miletoyd); 
+    }
+    else if (unitbefore == 3 && unitafter == 11){
+        //km/s -> knot
+        output = toconvert*htos/knottokmh; 
+    }
+    else if (unitbefore == 4 && unitafter == 1){
+        //km/h -> m/s
+        output = toconvert*kmtom/htos; 
+    }
+    else if (unitbefore == 4 && unitafter == 2){
+        //km/h -> m/h
+        output = toconvert*kmtom; 
+    }
+    else if (unitbefore == 4 && unitafter == 3){
+        //km/h -> km/s
+        output = toconvert/htos; 
+    }
+    else if (unitbefore == 4 && unitafter == 5){
+        //km/h -> in/s
+        output = toconvert*mtocm/(htos*intocm); 
+    }
+    else if (unitbefore == 4 && unitafter == 6){
+        //km/h -> in/h
+        output = toconvert*mtocm/intocm; 
+    }
+    else if (unitbefore == 4 && unitafter == 7){
+        //km/h -> ft/s
+        output = toconvert*mtocm/(intocm*fttoin*htos); 
+    }
+    else if (unitbefore == 4 && unitafter == 8){
+        //km/h -> ft/h
+        output = toconvert*mtocm/(intocm*fttoin); 
+    }
+    else if (unitbefore == 4 && unitafter == 9){
+        //km/h -> mi/s
+        output = toconvert*mtocm/(intocm*fttoin*ydtoft*miletoyd*htos); 
+    }
+    else if (unitbefore == 4 && unitafter == 10){
+        //km/h -> mph
+        output = toconvert*mtocm/(intocm*fttoin*ydtoft*miletoyd); 
+    }
+    else if (unitbefore == 4 && unitafter == 11){
+        //km/h -> knot
+        output = toconvert/knottokmh; 
+    }
+    else if (unitbefore == 5 && unitafter == 1){
+        //in/s -> m/s
+        output = toconvert*intocm/mtocm; 
+    }
+    else if (unitbefore == 5 && unitafter == 2){
+        //in/s -> m/h
+        output = toconvert*intocm*htos/mtocm; 
+    }
+    else if (unitbefore == 5 && unitafter == 3){
+        //in/s -> km/s
+        output = toconvert*intocm/(mtocm*kmtom); 
+    }
+    else if (unitbefore == 5 && unitafter == 4){
+        //in/s -> km/h
+        output = toconvert*intocm*htos/(mtocm*kmtom); 
+    }
+    else if (unitbefore == 5 && unitafter == 6){
+        //in/s -> in/h
+        output = toconvert*htos; 
+    }
+    else if (unitbefore == 5 && unitafter == 7){
+        //in/s -> ft/s
+        output = toconvert/fttoin; 
+    }
+    else if (unitbefore == 5 && unitafter == 8){
+        //in/s -> ft/h
+        output = toconvert*htos/fttoin; 
+    }
+    else if (unitbefore == 5 && unitafter == 9){
+        //in/s -> mi/s
+        output = toconvert/(miletoyd*ydtoft*fttoin); 
+    }
+    else if (unitbefore == 5 && unitafter == 10){
+        //in/s -> mph
+        output = toconvert*htos/(miletoyd*ydtoft*fttoin); 
+    }
+    else if (unitbefore == 5 && unitafter == 11){
+        //in/s -> knot
+        output = toconvert*intocm*htos/(mtocm*kmtom*knottokmh); 
+    }
+    else if (unitbefore == 6 && unitafter == 1){
+        //in/h -> m/s
+        output = toconvert*intocm/(mtocm*htos); 
+    }
+    else if (unitbefore == 6 && unitafter == 2){
+        //in/h -> m/h
+        output = toconvert*intocm/mtocm; 
+    }
+    else if (unitbefore == 6 && unitafter == 3){
+        //in/h -> km/s
+        output = toconvert*intocm/(mtocm*kmtom*htos); 
+    }
+    else if (unitbefore == 6 && unitafter == 4){
+        //in/h -> km/h
+        output = toconvert*intocm/(mtocm*kmtom); 
+    }
+    else if (unitbefore == 6 && unitafter == 5){
+        //in/h -> in/s
+        output = toconvert/htos; 
+    }
+    else if (unitbefore == 6 && unitafter == 7){
+        //in/h -> ft/s
+        output = toconvert/(fttoin*htos); 
+    }
+    else if (unitbefore == 6 && unitafter == 8){
+        //in/h -> ft/h
+        output = toconvert/fttoin; 
+    }
+    else if (unitbefore == 6 && unitafter == 9){
+        //in/h -> mi/s
+        output = toconvert/(miletoyd*ydtoft*fttoin*htos); 
+    }
+    else if (unitbefore == 6 && unitafter == 10){
+        //in/h -> mph
+        output = toconvert/(miletoyd*ydtoft*fttoin); 
+    }
+    else if (unitbefore == 6 && unitafter == 11){
+        //in/h -> knot
+        output = toconvert*intocm/(mtocm*kmtom*knottokmh); 
+    }
+    else if (unitbefore == 7 && unitafter == 1){
+        //ft/s -> m/s
+        output = toconvert*fttoin*intocm/(mtocm); 
+    }
+    else if (unitbefore == 7 && unitafter == 2){
+        //ft/s -> m/h
+        output = toconvert*fttoin*intocm*htos/(mtocm); 
+    }
+    else if (unitbefore == 7 && unitafter == 3){
+        //ft/s -> km/s
+        output = toconvert*fttoin*intocm/(mtocm*kmtom); 
+    }
+    else if (unitbefore == 7 && unitafter == 4){
+        //ft/s -> km/h
+        output = toconvert*fttoin*intocm*htos/(mtocm*kmtom); 
+    }
+    else if (unitbefore == 7 && unitafter == 5){
+        //ft/s -> in/s
+        output = toconvert*fttoin; 
+    }
+    else if (unitbefore == 7 && unitafter == 6){
+        //ft/s -> in/h
+        output = toconvert*fttoin*htos; 
+    }
+    else if (unitbefore == 7 && unitafter == 8){
+        //ft/s -> ft/h
+        output = toconvert*htos; 
+    }
+    else if (unitbefore == 7 && unitafter == 9){
+        //ft/s ->mi/s
+        output = toconvert/(miletoyd*ydtoft); 
+    }
+    else if (unitbefore == 7 && unitafter == 10){
+        //ft/s -> mi/h
+        output = toconvert*htos/(miletoyd*ydtoft); 
+    }
+    else if (unitbefore == 7 && unitafter == 11){
+        //ft/s -> knot
+        output = toconvert*htos*fttoin*intocm/(knottokmh*kmtom*mtocm); 
+    }
+    else if (unitbefore == 8 && unitafter == 1){
+        //ft/h -> m/s
+        output = toconvert*fttoin*intocm/(mtocm*htos); 
+    }
+    else if (unitbefore == 8 && unitafter == 2){
+        //ft/h -> m/h
+        output = toconvert*fttoin*intocm/(mtocm); 
+    }
+    else if (unitbefore == 8 && unitafter == 3){
+        //ft/h -> km/s
+        output = toconvert*fttoin*intocm/(mtocm*kmtom*htos); 
+    }
+    else if (unitbefore == 8 && unitafter == 4){
+        //ft/h -> km/h
+        output = toconvert*fttoin*intocm/(mtocm*kmtom); 
+    }
+    else if (unitbefore == 8 && unitafter == 5){
+        //ft/h -> in/s
+        output = toconvert*fttoin/htos; 
+    }
+    else if (unitbefore == 8 && unitafter == 6){
+        //ft/h -> in/h
+        output = toconvert*fttoin; 
+    }
+    else if (unitbefore == 8 && unitafter == 7){
+        //ft/h -> ft/s
+        output = toconvert/htos; 
+    }
+    else if (unitbefore == 8 && unitafter == 9){
+        //ft/h -> mi/s
+        output = toconvert/(miletoyd*ydtoft*htos); 
+    }
+    else if (unitbefore == 8 && unitafter == 10){
+        //ft/h -> mph
+        output = toconvert/(miletoyd*ydtoft); 
+    }
+    else if (unitbefore == 8 && unitafter == 11){
+        //ft/h -> knot
+        output = toconvert*fttoin*intocm/(knottokmh*kmtom*mtocm); 
+    }
+    else if (unitbefore == 9 && unitafter == 1){
+        //mi/s -> m/s
+        output = toconvert*miletoyd*ydtoft*fttoin*intocm/(mtocm); 
+    }
+    else if (unitbefore == 9 && unitafter == 2){
+        //mi/s -> m/h
+        output = toconvert*htos*miletoyd*ydtoft*fttoin*intocm/(mtocm); 
+    }
+    else if (unitbefore == 9 && unitafter == 3){
+        //mi/s ->  km/s
+        output = toconvert*miletoyd*ydtoft*fttoin*intocm/(mtocm*kmtom); 
+    }
+    else if (unitbefore == 9 && unitafter == 4){
+        //mi/s -> km/h
+        output = toconvert*htos*miletoyd*ydtoft*fttoin*intocm/(mtocm*kmtom); 
+    }
+    else if (unitbefore == 9 && unitafter == 5){
+        //mi/s -> in/s
+        output = toconvert*miletoyd*ydtoft*fttoin; 
+    }
+    else if (unitbefore == 9 && unitafter == 6){
+        //mi/s -> in/h
+        output = toconvert*htos*miletoyd*ydtoft*fttoin; 
+    }
+    else if (unitbefore == 9 && unitafter == 7){
+        //mi/s -> ft/s
+        output = toconvert*miletoyd*ydtoft; 
+    }
+    else if (unitbefore == 9 && unitafter == 8){
+        //mi/s -> ft/h
+        output = toconvert*htos*miletoyd*ydtoft; 
+    }
+    else if (unitbefore == 9 && unitafter == 10){
+        //mi/s -> mph
+        output = toconvert*htos; 
+    }
+    else if (unitbefore == 9 && unitafter == 11){
+        //mi/s -> knot
+        output = toconvert*htos*miletoyd*ydtoft*fttoin*intocm/(knottokmh*kmtom*mtocm); 
+    }
+    else if (unitbefore == 10 && unitafter == 1){
+        //mi/h -> m/s
+        output = toconvert*miletoyd*ydtoft*fttoin*intocm/(mtocm*htos); 
+    }
+    else if (unitbefore == 10 && unitafter == 2){
+        //mi/h -> m/h
+        output = toconvert*miletoyd*ydtoft*fttoin*intocm/(mtocm); 
+    }
+    else if (unitbefore == 10 && unitafter == 3){
+        //mi/h -> km/s
+        output = toconvert*miletoyd*ydtoft*fttoin*intocm/(mtocm*kmtom*htos); 
+    }
+    else if (unitbefore == 10 && unitafter == 4){
+        //mi/h -> km/h
+        output = toconvert*miletoyd*ydtoft*fttoin*intocm/(mtocm*kmtom); 
+    }
+    else if (unitbefore == 10 && unitafter == 5){
+        //mi/h -> in/s
+        output = toconvert*miletoyd*ydtoft*fttoin/htos; 
+    }
+    else if (unitbefore == 10 && unitafter == 6){
+        //mi/h -> in/h
+        output = toconvert*miletoyd*ydtoft*fttoin; 
+    }
+    else if (unitbefore == 10 && unitafter == 7){
+        //mi/h -> ft/s
+        output = toconvert*miletoyd*ydtoft/htos; 
+    }
+    else if (unitbefore == 10 && unitafter == 8){
+        //mi/h -> ft/h
+        output = toconvert*miletoyd*ydtoft; 
+    }
+    else if (unitbefore == 10 && unitafter == 9){
+        //mi/h -> mi/s
+        output = toconvert/htos; 
+    }
+    else if (unitbefore == 10 && unitafter == 11){
+        //mi/h -> knot
+        output = toconvert*fttoin*intocm/(knottokmh*kmtom*mtocm); 
+    }
+    else if (unitbefore == 11 && unitafter == 1){
+        //knot -> m/s
+        output = toconvert*knottokmh*kmtom/htos; 
+    }
+    else if (unitbefore == 11 && unitafter == 2){
+        //knot -> m/h
+        output = toconvert*knottokmh*kmtom; 
+    }
+    else if (unitbefore == 11 && unitafter == 3){
+        //knot -> km/s
+        output = toconvert*knottokmh/htos; 
+    }
+    else if (unitbefore == 11 && unitafter == 4){
+        //knot -> km/h
+        output = toconvert*knottokmh; 
+    }
+    else if (unitbefore == 11 && unitafter == 5){
+        //knot -> in/s
+        output = toconvert*knottokmh*kmtom*mtocm/(htos*intocm); 
+    }
+    else if (unitbefore == 11 && unitafter == 6){
+        //knot -> in/h
+        output = toconvert*knottokmh*kmtom*mtocm/(intocm); 
+    }
+    else if (unitbefore == 11 && unitafter == 7){
+        //knot -> ft/s
+        output = toconvert*knottokmh*kmtom*mtocm/(htos*intocm*fttoin); 
+    }
+    else if (unitbefore == 11 && unitafter == 8){
+        //knot -> ft/h
+        output = toconvert*knottokmh*kmtom*mtocm/(intocm*fttoin); 
+    }
+    else if (unitbefore == 11 && unitafter == 9){
+        //knot -> mi/s
+        output = toconvert*knottokmh*kmtom*mtocm/(htos*intocm*miletoyd*ydtoft*fttoin); 
+    }
+    else if (unitbefore == 11 && unitafter == 10){
+        //knot -> mph
+        output = toconvert*knottokmh*kmtom*mtocm/(intocm*miletoyd*ydtoft*fttoin); 
     }
     else{
         //default case
@@ -1689,19 +2193,19 @@ double timeConversion(int unitbefore, int unitafter, double toconvert){
     }
     else if (unitbefore == 1 && unitafter == 4){
         //ms -> h
-        output = toconvert/(stoms*htom*htom); 
+        output = toconvert/(stoms*htos); 
     }
     else if (unitbefore == 1 && unitafter == 5){
         //ms -> d
-        output = toconvert/(stoms*htom*htom*dtoh); 
+        output = toconvert/(stoms*htos*dtoh); 
     }
     else if (unitbefore == 1 && unitafter == 6){
         //ms -> wk
-        output = toconvert/(stoms*htom*htom*dtoh*wktod); 
+        output = toconvert/(stoms*htos*dtoh*wktod); 
     }
     else if (unitbefore == 1 && unitafter == 7){
         //ms -> yr
-        output = toconvert/(stoms*htom*htom*dtoh*yrtod); 
+        output = toconvert/(stoms*htos*dtoh*yrtod); 
     }
     else if (unitbefore == 2 && unitafter == 1){
         //s -> ms
@@ -1713,19 +2217,19 @@ double timeConversion(int unitbefore, int unitafter, double toconvert){
     }
     else if (unitbefore == 2 && unitafter == 4){
         //s -> h
-        output = toconvert/(htom*htom); 
+        output = toconvert/(htos); 
     }
     else if (unitbefore == 2 && unitafter == 5){
         //s -> d
-        output = toconvert/(htom*htom*dtoh); 
+        output = toconvert/(htos*dtoh); 
     }
     else if (unitbefore == 2 && unitafter == 6){
         //s -> wk
-        output = toconvert/(htom*htom*dtoh*wktod); 
+        output = toconvert/(htos*dtoh*wktod); 
     }
     else if (unitbefore == 2 && unitafter == 7){
         //s -> yr
-        output = toconvert/(htom*htom*dtoh*yrtod);
+        output = toconvert/(htos*dtoh*yrtod);
     }
     else if (unitbefore == 3 && unitafter == 1){
         //m -> ms
@@ -1753,11 +2257,11 @@ double timeConversion(int unitbefore, int unitafter, double toconvert){
     }
     else if (unitbefore == 4 && unitafter == 1){
         //h -> ms
-        output = toconvert*htom*htom*stoms; 
+        output = toconvert*htos*stoms; 
     }
     else if (unitbefore == 4 && unitafter == 2){
         //h -> s 
-        output = toconvert*htom*htom; 
+        output = toconvert*htos; 
     }
     else if (unitbefore == 4 && unitafter == 3){
         //h -> m
@@ -1777,11 +2281,11 @@ double timeConversion(int unitbefore, int unitafter, double toconvert){
     }
     else if (unitbefore == 5 && unitafter == 1){
         //d -> ms
-        output = toconvert*dtoh*htom*htom*stoms; 
+        output = toconvert*dtoh*htos*stoms; 
     }
     else if (unitbefore == 5 && unitafter == 2){
         //d -> s
-        output = toconvert*dtoh*htom*htom; 
+        output = toconvert*dtoh*htos; 
     }
     else if (unitbefore == 5 && unitafter == 3){
         //d -> m
@@ -1801,11 +2305,11 @@ double timeConversion(int unitbefore, int unitafter, double toconvert){
     }
     else if (unitbefore == 6 && unitafter == 1){
         //wk -> ms
-        output = toconvert*wktod*dtoh*htom*htom*stoms; 
+        output = toconvert*wktod*dtoh*htos*stoms; 
     }
     else if (unitbefore == 6 && unitafter == 2){
         //wk ->s
-        output = toconvert*wktod*dtoh*htom*htom; 
+        output = toconvert*wktod*dtoh*htos; 
     }
     else if (unitbefore == 6 && unitafter == 3){
         //wk -> m
@@ -1825,11 +2329,11 @@ double timeConversion(int unitbefore, int unitafter, double toconvert){
     }
     else if (unitbefore == 7 && unitafter == 1){
         //yr -> ms
-        output = toconvert*yrtod*dtoh*htom*htom*stoms; 
+        output = toconvert*yrtod*dtoh*htos*stoms; 
     }
     else if (unitbefore == 7 && unitafter == 2){
         //yr -> s
-        output = toconvert*yrtod*dtoh*htom*htom; 
+        output = toconvert*yrtod*dtoh*htos; 
     }
     else if (unitbefore == 7 && unitafter == 3){
         //yr -> m
