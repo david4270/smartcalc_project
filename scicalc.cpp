@@ -436,7 +436,7 @@ void findFunc(string &s, bool toRad){
     "atan","sin","cos","tan","asec",
     "acsc","acot","sec","csc","cot",
     "exp","twop","expmo","ln","logten",
-    "log","logtwo","sqrt","cbrt"};
+    "log","logtwo","logthree","sqrt","cbrt","powtwo","powthree"};
     for (auto it = 0; it != funcSet.size(); ++it){
         funcAppl(s,funcSet[it], toRad);
     }
@@ -512,9 +512,12 @@ void funcAppl(string &s, string funcType, bool toRad){
                 else if(funcType == "exp") num = exp(stod(numRead));
                 else if(funcType == "twop") num = exp2(stod(numRead));
                 else if(funcType == "expmo") num = expm1(stod(numRead));
+                else if(funcType == "powtwo") num = pow(stod(numRead),2);
+                else if(funcType == "powthree") num = pow(stod(numRead),3);
                 else if(funcType == "ln") num = log(stod(numRead));
-                else if(funcType == "log" || funcType == "logten") num = log10(stod(numRead));\
                 else if(funcType == "logtwo") num = log(stod(numRead))/log(2);
+                else if(funcType == "logthree") num = log(stod(numRead))/log(3);
+                else if(funcType == "log" || funcType == "logten") num = log10(stod(numRead)); 
                 else if(funcType == "sqrt") num = sqrt(stod(numRead));
                 else if(funcType == "cbrt") num = cbrt(stod(numRead));
                 else if(funcType == "sec"){
